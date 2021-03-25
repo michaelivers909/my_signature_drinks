@@ -16,13 +16,16 @@ export function AuthProvider({children}) {
         auth.createUserWithEmailAndPassword(email, password);
     }
 
+    function resetPassword(email) {
+        return auth.sendPasswordResetEmail(email)
+    }
+
     function logIn(email, password) {
         return auth.signInWithEmailAndPassword(email, password);
-
     }
 
     function logOut() {
-        return auth.signOut()
+        return auth.signOut();
     }
 
     useEffect(() => {
@@ -37,7 +40,8 @@ export function AuthProvider({children}) {
         currentUser,
         signUp,
         logIn, 
-        logOut
+        logOut, 
+        resetPassword
     }
 
     return (
