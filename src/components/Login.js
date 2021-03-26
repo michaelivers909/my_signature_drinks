@@ -1,12 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { logIn } = useAuth();
+    const { logIn } = useContext(AuthContext);
     const [ error, setError ] = useState("");
     const [ loading, setLoading ] = useState(false);
     const history = useHistory();
@@ -18,7 +18,7 @@ export default function Login() {
         setError ("");
         setLoading(true);
         await logIn(emailRef.current.value, passwordRef.current.value);
-        history.push("/");
+        history.push("/create");
     } catch {
         setError ("Something went wrong, unable to sign in. Please try again.");
     }
