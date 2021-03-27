@@ -4,13 +4,12 @@ import CreatePage from "./CreatePage";
 import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import SavedRecipes from "./SavedRecipes";
+import UpdateProfile from "./UpdateProfile";
 import { AuthContext } from "../contexts/AuthContext";
-import { Container, Nav, Button, Alert } from "react-bootstrap";
+import { Nav, Alert, NavDropdown } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, useHistory, Redirect } from "react-router-dom";
 import ProtectedRoutes from "../shared/ProtectedRoutes";
 import "../Style.css";
-
-
 
 function App() {
   const [error, setError] = useState("");
@@ -28,24 +27,23 @@ function App() {
   }};
   
   return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div style={{ maxWidth: "350px" }}>
+    
+      <div>
         <Router>
           {currentUser && (
             <>
-          <Nav className="pill" fill variant="pills">
+          <Nav className="pill" justify variant="pills">
             <Nav.Item>
               <Nav.Link href="/Create">Create Cocktail</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="/Saved">Saved Recipes</Nav.Link>
             </Nav.Item>
+            <NavDropdown title="Session" id="nav-dropdown">
+            <NavDropdown.Item onSelect={handleLogOut}>Log Out</NavDropdown.Item>
+            <NavDropdown.Item href="/UpdateProfile">Update Account</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
-          
-          <Button className="content-align-right" variant="link" onClick={handleLogOut}>Log Out</Button>
           {error && <Alert className="text-center"variant="danger">{error}</Alert>}
           </>
           )}
@@ -53,6 +51,7 @@ function App() {
               <ProtectedRoutes currentUser={currentUser} path="/Login" authRequired={false} component={Login} />
               <ProtectedRoutes currentUser={currentUser} path="/SignUp" authRequired={false} component={Signup}/>
               <ProtectedRoutes currentUser={currentUser} path="/ForgotPassword" authRequired={false} component={ForgotPassword}/>
+              <ProtectedRoutes currentUser={currentUser} path="/UpdateProfile" authRequired={true} component={UpdateProfile}/>
               <ProtectedRoutes currentUser={currentUser} path="/Create" authRequired={true} component={CreatePage} />
               <ProtectedRoutes currentUser={currentUser} path="/Saved" authRequired={true} component={SavedRecipes} />
               <Route path="*">
@@ -61,7 +60,7 @@ function App() {
             </Switch>
           </Router>
       </div>
-    </Container>
+  
   )
 };
 

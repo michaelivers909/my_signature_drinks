@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import "../Style.css";
@@ -28,9 +28,11 @@ export default function ForgotPassword() {
     }
         
     return (
-        
-        <>
-        <Card className="bgParchGrey fontM">
+        <Container
+            className="justify-content-center"
+            style={{ minHeight: "100vh", maxWidth: 600}}
+        >
+        <Card border="secondary" className="bgParchGrey fontM">
             <Card.Body className="text-center mb-4 bgParchGrey">
                 <h2 className="fontDafoe">Reset Password</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -41,7 +43,7 @@ export default function ForgotPassword() {
                         <Form.Control type="email" ref={emailRef} required />
                     </Form.Group>
                     
-                    <Button variant="info" disabled={loading} className="w-100" type="submit">Reset Password</Button>
+                    <Button variant="info" disabled={loading} className="w-50" type="submit">Reset Password</Button>
                 </Form>
                 <div className="w-100 text-center mt-2 ">
                     <Link to="/login">Login</Link>
@@ -51,7 +53,7 @@ export default function ForgotPassword() {
                 </div> 
             </Card.Body>
         </Card>
-        </>
+        </Container>
         
 
     )

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import "../Style.css";
@@ -27,8 +27,11 @@ export default function Login() {
   }
 
   return (
-    <>
-      <Card className="bgParchGrey fontM">
+    <Container
+            className="justify-content-center"
+            style={{ minHeight: "100vh", maxWidth: 600}}
+        >
+      <Card border="secondary" className="bgParchGrey fontM">
         <Card.Body className="text-center mb-4">
           <h2 className="fontDafoe">Log In To Create Cocktail Recipes!</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -44,7 +47,7 @@ export default function Login() {
             <Button
               variant="info"
               disabled={loading}
-              className="w-100"
+              className="w-50"
               type="submit"
             >
               Log In
@@ -62,6 +65,6 @@ export default function Login() {
           </div>
         </Card.Body>
       </Card>
-    </>
+    </Container>
   );
 }

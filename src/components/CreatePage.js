@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { Button, Card, Form, Alert } from "react-bootstrap";
+import { Button, Card, Form, Alert, Container } from "react-bootstrap";
 import "../Style.css";
 
 export default function CreatePage() {
@@ -23,14 +23,13 @@ export default function CreatePage() {
   };
 
   return (
-    // <Card>
-    //   <Card.Body>
-        // <Card.Title className="text-center">Create a Cocktail Recipe</Card.Title>
+      <body className="bgParchGrey">
+       <Container>
         <Form className="bgParchGrey fontM">
             <h1 className="text-center fontDafoe">Create a Cocktail Recipe</h1>
           <Form.Group>
-            <Form.Label>Cocktail Name</Form.Label>
-            <Form.Control text="name" placeholder="Enter Name Of Cocktail" />
+            <Form.Label className="margin-auto">Cocktail Name</Form.Label>
+            <Form.Control className="text-center justify-element-center"style={{maxWidth: 600}} text="name" placeholder="Enter Name Of Cocktail" />
           </Form.Group>
           <Form.Group>
           <div className="text-center mb-4">
@@ -55,7 +54,7 @@ export default function CreatePage() {
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Select Main Spirit</Form.Label>
-            <Form.Control as="select">
+            <Form.Control className="text-center" style={{maxWidth: 150}}as="select">
               <option>Vodka</option>
               <option>Gin</option>
               <option>Rum</option>
@@ -86,7 +85,9 @@ export default function CreatePage() {
           </Form.Group>
           <Button className="text-center" variant="info">Save Recipe</Button>
         </Form>
-    //   </Card.Body>
-    // </Card>
+       
+      </Container>
+    </body>
+    
   );
 }
