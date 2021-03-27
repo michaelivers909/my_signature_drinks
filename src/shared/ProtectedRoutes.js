@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
 import { Redirect, Route } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
+import { currentUser } from "../contexts/AuthContext";
 
-export default function ProtectedRoutes({ component: Component, ...rest }) {
-  const currentUser = useContext(AuthContext);
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        return currentUser ? <Component {...props} /> : <Redirect to = "/login" />;
-      }}
-    ></Route>
-  );
-}
+const ProtectedRoutes = ({ currentUser, authRequired, component, path }) => {
+  const redirect = authRequired ? "/Login" : "/Create";
+
+  if ((authRequired && !currentUser) || (!authRequired && currentUser)) {
+    return <Redirect to={redirect} />;
+  }
+  return <Route path={path} component={component} />;
+};
+
+export default ProtectedRoutes;
 
 

@@ -18,6 +18,13 @@
     width: 300px;
     height: 300px;
     border: 1px dashed black;
-    align-content: center;
+    margin:auto;
     cursor: pointer;
+  }
+
+  .bgParchGrey {
+    background-color:rgb(0,0,0);
+    background-image:url(http://www.zingerbugimages.com/backgrounds/off_white_parchment_paper_wallpaper_texture_seamless.jpg);
+    background-position:top left;
+    background-repeat:repeat;background-attachment:fixed;
   }

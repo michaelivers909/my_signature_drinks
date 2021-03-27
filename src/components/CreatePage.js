@@ -29,7 +29,6 @@ export default function CreatePage() {
         <Form>
             <h1 className="text-center">Create a Cocktail Recipe</h1>
           <Form.Group>
-            
             <Form.Label>Cocktail Name</Form.Label>
             <Form.Control text="name" placeholder="Enter Name Of Cocktail" />
           </Form.Group>

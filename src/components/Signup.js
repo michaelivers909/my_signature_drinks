@@ -32,7 +32,7 @@ export default function Signup() {
     return (
         
         <>
-        <Card>
+        <Card className="bgParchGrey">
             <Card.Body className="text-center mb-4">
                 <h2>Sign Up To Make Cocktail Recipes!</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -51,11 +51,11 @@ export default function Signup() {
                     </Form.Group>
                     <Button variant="info" disabled={loading} className="w-100" type="submit">Sign Up</Button>
                 </Form>
+                <div className="w-100 text-center mt-4">
+                    Already signed up? <Link to="/login">Log In</Link>
+                </div>
             </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-4">
-            Already signed up? <Link to="/login">Log In</Link>
-        </div>
         </>
         
 
