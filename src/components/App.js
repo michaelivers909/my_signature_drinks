@@ -26,16 +26,6 @@ function App() {
   } catch {
     setError("Failed to Log Out.")
   }};
-
-  // async function handleLogOut() {
-    // setError("");
-    // try {
-      // await auth.signOut();
-      // history.push("/login");
-    // } catch {
-      // setError("Failed To Log Out.")
-    // }
-  // };
   
   return (
     <Container
@@ -46,7 +36,7 @@ function App() {
         <Router>
           {currentUser && (
             <>
-          <Nav className="justify-content-center pill" fill variant="pills" defaultActiveKey="/create">
+          <Nav className="pill" fill variant="pills">
             <Nav.Item>
               <Nav.Link href="/Create">Create Cocktail</Nav.Link>
             </Nav.Item>
@@ -60,11 +50,11 @@ function App() {
           </>
           )}
             <Switch>
-              <ProtectedRoutes isAuth={currentUser} path="/Login" authRequired={false} component={Login} />
-              <ProtectedRoutes isAuth={currentUser} path="/SignUp" authRequired={false} component={Signup}/>
-              <ProtectedRoutes isAuth={currentUser} path="/ForgotPassword" authRequired={false} component={ForgotPassword}/>
-              <ProtectedRoutes isAuth={currentUser} path="/Create" authRequired={true} component={CreatePage} />
-              <ProtectedRoutes isAuth={currentUser} path="/Saved" authRequired={true} component={SavedRecipes} />
+              <ProtectedRoutes currentUser={currentUser} path="/Login" authRequired={false} component={Login} />
+              <ProtectedRoutes currentUser={currentUser} path="/SignUp" authRequired={false} component={Signup}/>
+              <ProtectedRoutes currentUser={currentUser} path="/ForgotPassword" authRequired={false} component={ForgotPassword}/>
+              <ProtectedRoutes currentUser={currentUser} path="/Create" authRequired={true} component={CreatePage} />
+              <ProtectedRoutes currentUser={currentUser} path="/Saved" authRequired={true} component={SavedRecipes} />
               <Route path="*">
                 <Redirect to="/Login" />
               </Route>

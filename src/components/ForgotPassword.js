@@ -30,9 +30,9 @@ export default function ForgotPassword() {
     return (
         
         <>
-        <Card className="bgParchGrey">
+        <Card className="bgParchGrey fontM">
             <Card.Body className="text-center mb-4 bgParchGrey">
-                <h2>Reset Password</h2>
+                <h2 className="fontDafoe">Reset Password</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {message && <Alert variant="success">{message}</Alert>}
                 <Form onSubmit={handleSubmit}>

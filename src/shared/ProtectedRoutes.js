@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { currentUser } from "../contexts/AuthContext";
+
 
 const ProtectedRoutes = ({ currentUser, authRequired, component, path }) => {
   const redirect = authRequired ? "/Login" : "/Create";

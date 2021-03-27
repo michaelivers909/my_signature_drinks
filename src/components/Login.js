@@ -2,6 +2,7 @@ import React, { useRef, useState, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import "../Style.css";
 
 export default function Login() {
   const emailRef = useRef();
@@ -27,9 +28,9 @@ export default function Login() {
 
   return (
     <>
-      <Card className="bgParchGrey">
+      <Card className="bgParchGrey fontM">
         <Card.Body className="text-center mb-4">
-          <h2>Log In To Make Cocktail Recipes!</h2>
+          <h2 className="fontDafoe">Log In To Create Cocktail Recipes!</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">

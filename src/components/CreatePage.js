@@ -26,8 +26,8 @@ export default function CreatePage() {
     // <Card>
     //   <Card.Body>
         // <Card.Title className="text-center">Create a Cocktail Recipe</Card.Title>
-        <Form>
-            <h1 className="text-center">Create a Cocktail Recipe</h1>
+        <Form className="bgParchGrey fontM">
+            <h1 className="text-center fontDafoe">Create a Cocktail Recipe</h1>
           <Form.Group>
             <Form.Label>Cocktail Name</Form.Label>
             <Form.Control text="name" placeholder="Enter Name Of Cocktail" />
@@ -84,6 +84,7 @@ export default function CreatePage() {
             <Form.Label>Directions</Form.Label>
             <Form.Control as="textarea" placeholder="Enter directions here." />
           </Form.Group>
+          <Button className="text-center" variant="info">Save Recipe</Button>
         </Form>
     //   </Card.Body>
     // </Card>
