@@ -8,8 +8,16 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.pill {
-    background-color: mediumaquamarine;
+.pills {
+    background-color: rgb(7, 175, 167);
+}
+
+.white {
+  color: white;
+}
+
+.blue:active {
+  background-color: darkcyan i !important;
 }
 
 .right {

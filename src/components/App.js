@@ -32,14 +32,14 @@ function App() {
         <Router>
           {currentUser && (
             <>
-          <Nav className="pill" justify variant="pills">
+          <Nav className="pills" justify variant="pills info">
             <Nav.Item>
-              <Nav.Link href="/Create">Create Cocktail</Nav.Link>
+              <Nav.Link className="white blue" href="/Create">Create Cocktail</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/Saved">Saved Recipes</Nav.Link>
+              <Nav.Link className="white" href="/Saved">Saved Recipes</Nav.Link>
             </Nav.Item>
-            <NavDropdown title="Session" id="nav-dropdown">
+            <NavDropdown title={<span className="white">Session</span>} id="nav-dropdown">
             <NavDropdown.Item onSelect={handleLogOut}>Log Out</NavDropdown.Item>
             <NavDropdown.Item href="/UpdateProfile">Update Account</NavDropdown.Item>
             </NavDropdown>

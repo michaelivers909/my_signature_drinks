@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../Firebase";
 
-export const AuthContext = React.createContext()
+export const RecipeContext = React.createContext()
 
-export function AuthProvider({children}) {
+export function RecipeProvider({children}) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
 
@@ -41,19 +41,13 @@ export function AuthProvider({children}) {
     }, []);
 
     const value = {
-        currentUser,
-        signUp,
-        logIn, 
-        logOut, 
-        resetPassword,
-        updateEmail,
-        updatePassword
+        
     }
 
     return (
-        <AuthContext.Provider value={value}>
+        <RecipeContext.Provider value={value}>
             {!loading && children}
-        </AuthContext.Provider>
+        </RecipeContext.Provider>
     )
 
 };
