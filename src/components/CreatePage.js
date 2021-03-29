@@ -35,6 +35,10 @@ const CreatePage = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setRecipe(recipe => ({
+      ...recipe,
+    }));
   };
 
 
@@ -130,7 +134,7 @@ const CreatePage = () => {
           ))}
         </div>
         <div>
-          <Button type="submit" className="text-center" variant="info">
+          <Button type="submit" className="text-center" variant="info" onClick={handleSubmit}>
             Save Recipe
           </Button>
         </div>
