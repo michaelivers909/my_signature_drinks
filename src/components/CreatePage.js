@@ -9,7 +9,7 @@ const CreatePage = () => {
   const [error, setError] = useState("");
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-  const [recipe, setRecipe] = React.useState([
+  const [recipe, setRecipe] = React.useState(
     {
       name: "",
       picture: "",
@@ -17,8 +17,8 @@ const CreatePage = () => {
       ingredients1: "",
       ingredients2: "",
       directions: "",
-    },
-  ]);
+    }
+  );
 
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
@@ -55,6 +55,9 @@ const CreatePage = () => {
               type="text"
               placeholder="Enter Name Of Cocktail"
               value={recipe.name}
+              onChange={(e) => setRecipe((val) => ({ ...val, name: e.target.value })) 
+              }
+
             />
           </Form.Group>
           <Form.Group>
@@ -66,7 +69,7 @@ const CreatePage = () => {
                 onChange={handleImageUpload}
                 ref={imageUploader}
                 style={{
-                display: "none"
+                display: "none" 
                 }}
               />
               <div
@@ -85,6 +88,7 @@ const CreatePage = () => {
               style={{ maxWidth: 150 }}
               as="select"
               value={recipe.spirit}
+              onChange={(e) => setRecipe((val) => ({ ...val, spirit: e.target.value })) }
             >
               <option>Vodka</option>
               <option>Gin</option>
@@ -102,7 +106,9 @@ const CreatePage = () => {
               as="textarea"
               placeholder="Enter all spirits and measurements here."
               value={recipe.ingredients1}
-            ></Form.Control>
+              onChange={(e) => setRecipe((val) => ({ ...val, ingredients1: e.target.value }))}
+            >
+            </Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>All other ingredients</Form.Label>
@@ -110,6 +116,7 @@ const CreatePage = () => {
               as="textarea"
               placeholder="Enter sweet, bitter, juices, syrups, soda, egg whites, and all other ingredients & measurements here."
               value={recipe.ingredients2}
+              onChange={(e) => setRecipe((val) => ({ ...val, ingredients2: e.target.value }))}
             ></Form.Control>
           </Form.Group>
           <Form.Group>
@@ -118,18 +125,19 @@ const CreatePage = () => {
               as="textarea"
               placeholder="Enter directions here."
               value={recipe.directions}
+              onChange={(e) => setRecipe((val) => ({ ...val, directions: e.target.value }))}
             />
           </Form.Group>
         </Form>
         <div>
-          {recipe.map(data => (
+          {recipe.create.map((recipe) => (
             <div>
-              <p>{data.name}</p>
-              <p>{data.picture}</p>
-              <p>{data.spirit}</p>
-              <p>{data.ingredients1}</p>
-              <p>{data.ingredients2}</p>
-              <p>{data.directions}</p>
+              <span>{recipe.name}</span>
+              <span>{recipe.picture}</span>
+              <span>{recipe.spirit}</span>
+              <span>{recipe.ingredients1}</span>
+              <span>{recipe.ingredients2}</span>
+              <span>{recipe.directions}</span>
             </div>
           ))}
         </div>
