@@ -5,8 +5,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import "../Style.css";
 
 export default function Login() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
   const { logIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

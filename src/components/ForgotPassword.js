@@ -5,7 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import "../Style.css";
 
 export default function ForgotPassword() {
-    const emailRef = useRef();
+    const emailRef = useRef("");
     const { resetPassword } = useContext(AuthContext);
     const [ message, setMessage ] = useState("");
     const [ error, setError ] = useState("");

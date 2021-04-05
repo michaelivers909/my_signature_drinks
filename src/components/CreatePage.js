@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Button, Card, Form, Alert, Container } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
 import "../Style.css";
 
 
@@ -13,7 +14,7 @@ const CreatePage = () => {
     {
       name: "",
       picture: "",
-      spirit: "",
+      spirit: "vodka",
       ingredients1: "",
       ingredients2: "",
       directions: "",
@@ -90,14 +91,14 @@ const CreatePage = () => {
               value={recipe.spirit}
               onChange={(e) => setRecipe((val) => ({ ...val, spirit: e.target.value })) }
             >
-              <option>Vodka</option>
-              <option>Gin</option>
-              <option>Rum</option>
-              <option>Tequila</option>
-              <option>Bourbon</option>
-              <option>Scotch</option>
-              <option>Misc. Whiskey</option>
-              <option>Other</option>
+              <option value="vodka">Vodka</option>
+              <option value="gin">Gin</option>
+              <option value="rum">Rum</option>
+              <option value="tequila">Tequila</option>
+              <option value="bourbon">Bourbon</option>
+              <option value="scotch">Scotch</option>
+              <option value="whiskey">Misc. Whiskey</option>
+              <option value="other">Other</option>
             </Form.Control>
           </Form.Group>
           <Form.Group>
@@ -129,20 +130,24 @@ const CreatePage = () => {
             />
           </Form.Group>
         </Form>
+        {/* <div> */}
+          {/* {recipe.create.map((recipe) => ( */}
+            {/* // <div> */}
+              {/* <span>{recipe.name}</span> */}
+              {/* <span>{recipe.picture}</span> */}
+              {/* <span>{recipe.spirit}</span> */}
+              {/* <span>{recipe.ingredients1}</span> */}
+              {/* <span>{recipe.ingredients2}</span> */}
+              {/* <span>{recipe.directions}</span> */}
+            {/* </div> */}
+          {/* // ))} */}
+        {/* </div> */}
         <div>
-          {recipe.create.map((recipe) => (
-            <div>
-              <span>{recipe.name}</span>
-              <span>{recipe.picture}</span>
-              <span>{recipe.spirit}</span>
-              <span>{recipe.ingredients1}</span>
-              <span>{recipe.ingredients2}</span>
-              <span>{recipe.directions}</span>
-            </div>
-          ))}
-        </div>
-        <div>
-          <Button type="submit" className="text-center" variant="info" onClick={handleSubmit}>
+          <Button 
+          type="submit" 
+          className="text-center" 
+          variant="info" 
+          onClick={handleSubmit}>
             Save Recipe
           </Button>
         </div>

@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap");
 .fontDafoe {
-  font-family: 'Mr Dafoe', cursive;
+  font-family: "Mr Dafoe", cursive;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 .fontM {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .pills {
-    background-color: rgb(7, 175, 167);
+  background-color: rgb(7, 175, 167);
 }
 
 .white {
@@ -21,28 +21,30 @@
 }
 
 .right {
-    display: block;
-    margin-left: auto;
-    margin-right: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+  display: block;
+  margin-left: auto;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
-  .drinkImage {
-      width: 300px;
-  }
+.drinkImage {
+  max-height: 300px;
+  max-width: 300px;
+}
 
-  .imgUpload {
-    width: 300px;
-    height: 300px;
-    border: 1px dashed black;
-    margin:auto;
-    cursor: pointer;
-  }
+.imgUpload {
+  width: 300px;
+  height: 300px;
+  border: 1px dashed black;
+  margin: auto;
+  cursor: pointer;
+}
 
-  .bgParchGrey {
-    background-color:rgb(0,0,0);
-    background-image:url(http://www.zingerbugimages.com/backgrounds/off_white_parchment_paper_wallpaper_texture_seamless.jpg);
-    background-position:top left;
-    background-repeat:repeat;background-attachment:fixed;
-  }
+.bgParchGrey {
+  background-color: rgb(0, 0, 0);
+  background-image: url(http://www.zingerbugimages.com/backgrounds/off_white_parchment_paper_wallpaper_texture_seamless.jpg);
+  background-position: top left;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}

@@ -5,9 +5,9 @@ import { Link, useHistory } from "react-router-dom";
 import "../Style.css";
 
 export default function UpdateProfile() {
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const passwordConfirmRef = useRef();
+    const emailRef = useRef("");
+    const passwordRef = useRef("");
+    const passwordConfirmRef = useRef("");
     const { currentUser, updateEmail, updatePassword } = useContext(AuthContext);
     const [ error, setError ] = useState("");
     const [ loading, setLoading ] = useState(false);
@@ -26,10 +26,6 @@ export default function UpdateProfile() {
 
         if (emailRef.current.value !== currentUser.email) {
         upDates.push(updateEmail(emailRef.current.value));
-        }
-
-        if (passwordRef.current.value) {
-            upDates.push(updatePassword(passwordRef.current.value));
         }
 
         Promise.all(upDates).then(() => {

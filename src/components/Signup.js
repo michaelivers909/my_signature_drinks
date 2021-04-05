@@ -5,9 +5,9 @@ import { Link, useHistory } from "react-router-dom";
 import "../Style.css";
 
 export default function Signup() {
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const passwordConfirmRef = useRef();
+    const emailRef = useRef("");
+    const passwordRef = useRef("");
+    const passwordConfirmRef = useRef("");
     const { signUp } = useContext(AuthContext);
     const [ error, setError ] = useState("");
     const [ loading, setLoading ] = useState(false);
