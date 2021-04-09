@@ -48,3 +48,7 @@
   background-repeat: repeat;
   background-attachment: fixed;
 }
+
+.border {
+  border-color: 1px solid black
+}
