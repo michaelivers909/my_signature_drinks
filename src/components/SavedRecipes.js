@@ -61,8 +61,8 @@ export default function SavedRecipes() {
           <p>{recipe.ingredients1}</p>
           <p>{recipe.ingredients2}</p>
           <p>{recipe.directions}</p>
-          {recipes > 1 && (
-        <>
+          {/* {recipes > 1 && ( */}
+            {/* <> */}
           <div>
             <Button
               className="m-2"
@@ -88,8 +88,8 @@ export default function SavedRecipes() {
             >
               Edit Recipe
             </Button>
-            </>
-            )}
+            {/* </> */}
+            {/* )} */}
           </div>
         </div>
       ))}

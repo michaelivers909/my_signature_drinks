@@ -29,7 +29,7 @@ export default function UpdateProfile() {
         }
 
         Promise.all(upDates).then(() => {
-            history.push("/Create")
+            history.push("/create")
         }).catch(() => {
             setError("Failed to update your account.");
         }).finally(() => {
@@ -66,7 +66,7 @@ export default function UpdateProfile() {
                     <Button variant="info" disabled={loading} className="w-50" type="submit">Update Account</Button>
                 </Form>
                 <div className="w-100 text-center mt-4">
-                <Link to="/Create">Cancel</Link>
+                <Link to="/create">Cancel</Link>
                 </div>
             </Card.Body>
         </Card>

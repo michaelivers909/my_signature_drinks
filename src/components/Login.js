@@ -19,7 +19,7 @@ export default function Login() {
       setError("");
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      history.push("/Create");
+      history.push("/create");
     } catch {
       setError("Something went wrong, unable to sign in. Please try again.");
     }
@@ -54,12 +54,12 @@ export default function Login() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-2 ">
-            <Link to="/ForgotPassword">Forgot Password?</Link>
+            <Link to="/forgot-password">Forgot Password?</Link>
           </div>
 
           <div className="w-100 text-center mt-4">
             Don't have an account?{" "}
-            <Link to="Signup">
+            <Link to="signup">
               Sign Up
             </Link>
           </div>

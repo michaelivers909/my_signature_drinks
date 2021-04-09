@@ -75,42 +75,42 @@ function App() {
         <Switch>
           <ProtectedRoutes
             currentUser={currentUser}
-            path="/Login"
+            path="/login"
             authRequired={false}
             component={Login}
           />
           <ProtectedRoutes
             currentUser={currentUser}
-            path="/SignUp"
+            path="/signUp"
             authRequired={false}
             component={Signup}
           />
           <ProtectedRoutes
             currentUser={currentUser}
-            path="/ForgotPassword"
+            path="/forgot-password"
             authRequired={false}
             component={ForgotPassword}
           />
           <ProtectedRoutes
             currentUser={currentUser}
-            path="/UpdateProfile"
+            path="/update-profile"
             authRequired={true}
             component={UpdateProfile}
           />
           <ProtectedRoutes
             currentUser={currentUser}
-            path="/Create"
+            path="/create"
             authRequired={true}
             component={CreatePage}
           />
           <ProtectedRoutes
             currentUser={currentUser}
-            path="/Saved"
+            path="/saved"
             authRequired={true}
             component={SavedRecipes}
           />
           <Route path="*">
-            <Redirect to="/Login" />
+            <Redirect to="/login" />
           </Route>
         </Switch>
       </Router>

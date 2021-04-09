@@ -17,6 +17,7 @@ const CreatePage = () => {
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
   const [directions, setDirections] = useState("");
+  const history = useHistory();
 
   const db = firebase.firestore().collection("recipes");
 
@@ -39,6 +40,11 @@ const CreatePage = () => {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  function goToSaved() { 
+    let path = `saved`; 
+    history.push(path);
   }
 
   return (
@@ -129,7 +135,7 @@ const CreatePage = () => {
         <Button
           type="submit"
           variant="info"
-          onClick={() =>
+          onClick={() => {
             addRecipe({
               name,
               picture,
@@ -139,7 +145,8 @@ const CreatePage = () => {
               directions,
               id: uuidv4(),
             })
-          }
+            {goToSaved}
+          }}
         >
           Save Recipe
         </Button>
