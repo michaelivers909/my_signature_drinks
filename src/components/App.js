@@ -62,7 +62,7 @@ function App() {
                 <NavDropdown.Item onSelect={handleLogOut}>
                   Log Out
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/UpdateProfile">
+                <NavDropdown.Item href="/update-profile">
                   Update Account
                 </NavDropdown.Item>
               </NavDropdown>

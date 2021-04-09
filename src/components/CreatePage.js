@@ -145,7 +145,7 @@ const CreatePage = () => {
               directions,
               id: uuidv4(),
             })
-            {goToSaved}
+            // {goToSaved}
           }}
         >
           Save Recipe
