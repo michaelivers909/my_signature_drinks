@@ -53,7 +53,6 @@ export default function SavedRecipes() {
     <body className="bgParchGrey" style={{ minHeight: 800 }}>
       <h1 className="text-center fontDafoe">My Saved Recipes</h1>
       {loading ? <h1>Loading...</h1> : null}
-      {recipes < 1 && (<h2>You Have No Saved Recipes</h2>)}
       {recipes.map((recipe) => (
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -62,7 +61,7 @@ export default function SavedRecipes() {
           <p>{recipe.ingredients1}</p>
           <p>{recipe.ingredients2}</p>
           <p>{recipe.directions}</p>
-          {recipes > 1 && (
+          {/* {recipes > 1 && ( */}
             <>
           <div>
             <Button
@@ -92,7 +91,7 @@ export default function SavedRecipes() {
             
           </div>
           </>
-            )}
+            {/* )} */}
         </div>
       ))}
     </body>

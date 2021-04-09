@@ -37,14 +37,10 @@ const CreatePage = () => {
   function addRecipe(newRecipe) {
     db.doc(newRecipe.id)
       .set(newRecipe)
+      history.push("/saved")
       .catch((err) => {
         console.error(err);
       });
-  }
-
-  function goToSaved() { 
-    let path = `saved`; 
-    history.push(path);
   }
 
   return (
@@ -145,7 +141,6 @@ const CreatePage = () => {
               directions,
               id: uuidv4(),
             })
-            // {goToSaved}
           }}
         >
           Save Recipe
