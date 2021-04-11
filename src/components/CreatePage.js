@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Button, Card, Form, Alert, Container } from "react-bootstrap";
@@ -8,6 +8,9 @@ import "../Style.css";
 
 const CreatePage = () => {
   const [error, setError] = useState("");
+  const {currentUser} = useContext(AuthContext);
+  const currentUserEmail = currentUser ? currentUser.email : "";
+  const owner = currentUser ? currentUser.uid : 'unknown';
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   // const [recipe, setRecipe] = useState("");
@@ -37,17 +40,18 @@ const CreatePage = () => {
   function addRecipe(newRecipe) {
     db.doc(newRecipe.id)
       .set(newRecipe)
-      history.push("/saved")
       .catch((err) => {
         console.error(err);
       });
+      history.push("/saved")
   }
 
   return (
     <body className="bgParchGrey">
     {/* <Container className="bgParchGrey"> */}
       <Form className="bgParchGrey fontM">
-        <h1 className="text-center fontDafoe">Create a Cocktail Recipe</h1>
+        <h4 className="text-center m-2">{`Welcome ${currentUserEmail}`}</h4>
+        <h1 className="text-center fontDafoe m-2">Create a Cocktail Recipe</h1>
         <Form.Group>
           <Form.Label className="margin-auto">Cocktail Name</Form.Label>
           <Form.Control
@@ -89,14 +93,14 @@ const CreatePage = () => {
             value={spirit}
             onChange={(e) => setSpirit(e.target.value)}
           >
-            <option value="vodka">Vodka</option>
-            <option value="gin">Gin</option>
-            <option value="rum">Rum</option>
-            <option value="tequila">Tequila</option>
-            <option value="bourbon">Bourbon</option>
-            <option value="scotch">Scotch</option>
-            <option value="whiskey">Misc. Whiskey</option>
-            <option value="other">Other</option>
+            <option value="Vodka">Vodka</option>
+            <option value="Gin">Gin</option>
+            <option value="Rum">Rum</option>
+            <option value="Tequila">Tequila</option>
+            <option value="Bourbon">Bourbon</option>
+            <option value="Scotch">Scotch</option>
+            <option value="Whiskey">Misc. Whiskey</option>
+            <option value="Other">Other</option>
           </Form.Control>
         </Form.Group>
         <Form.Group>
@@ -139,6 +143,7 @@ const CreatePage = () => {
               ingredients1,
               ingredients2,
               directions,
+              owner,
               id: uuidv4(),
             })
           }}

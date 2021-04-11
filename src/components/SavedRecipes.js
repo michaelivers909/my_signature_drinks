@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Button, Card, Form, Alert, Container } from "react-bootstrap";
@@ -6,6 +6,8 @@ import firebase from "../Firebase";
 import "../Style.css";
 
 export default function SavedRecipes() {
+  const {currentUser} = useContext(AuthContext);
+  const currentUserId = currentUser ? currentUser.uid : null;
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -14,7 +16,9 @@ export default function SavedRecipes() {
 
   function getRecipes() {
     setLoading(true);
-    db.onSnapshot((querySnapshot) => {
+    db
+    .where('owner', '==', currentUserId)
+    .onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
@@ -55,7 +59,7 @@ export default function SavedRecipes() {
       {loading ? <h1>Loading...</h1> : null}
       {recipes.map((recipe) => (
         <div key={recipe.id}>
-          <h2>{recipe.name}</h2>
+          <h3>{recipe.name}</h3>
           <p>{recipe.picture}</p>
           <p>{recipe.spirit}</p>
           <p>{recipe.ingredients1}</p>
