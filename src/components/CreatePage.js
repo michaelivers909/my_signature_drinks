@@ -48,9 +48,8 @@ const CreatePage = () => {
 
   return (
     <body className="bgParchGrey">
-    {/* <Container className="bgParchGrey"> */}
       <Form className="bgParchGrey fontM">
-        <h4 className="text-center m-2">{`Welcome ${currentUserEmail}`}</h4>
+        <h4 className="text-center">{`Welcome ${currentUserEmail}`}</h4>
         <h1 className="text-center fontDafoe m-2">Create a Cocktail Recipe</h1>
         <Form.Group>
           <Form.Label className="margin-auto">Cocktail Name</Form.Label>
@@ -151,7 +150,6 @@ const CreatePage = () => {
           Save Recipe
         </Button>
       </div>
-    {/* </Container> */}
     </body>
   );
 };

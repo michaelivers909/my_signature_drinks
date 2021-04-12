@@ -54,12 +54,12 @@ export default function SavedRecipes() {
   }
 
   return (
-    <body className="bgParchGrey" style={{ minHeight: 800 }}>
+    <body className="bgParchGrey text-center" style={{ minHeight: 800 }}>
       <h1 className="text-center fontDafoe">My Saved Recipes</h1>
       {loading ? <h1>Loading...</h1> : null}
       {recipes.map((recipe) => (
         <div key={recipe.id}>
-          <h3>{recipe.name}</h3>
+          <h4>{recipe.name}</h4>
           <p>{recipe.picture}</p>
           <p>{recipe.spirit}</p>
           <p>{recipe.ingredients1}</p>

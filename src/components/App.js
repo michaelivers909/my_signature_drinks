@@ -46,7 +46,7 @@ function App() {
           // <>
             <Nav className="pills" justify variant="pills info">
               <Nav.Item>
-                <Nav.Link className="white blue" href="/Create">
+                <Nav.Link className="white" href="/Create">
                   Create Cocktail
                 </Nav.Link>
               </Nav.Item>
