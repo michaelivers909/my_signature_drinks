@@ -60,12 +60,11 @@ export default function SavedRecipes() {
       {recipes.map((recipe) => (
         <div key={recipe.id}>
           <h4>{recipe.name}</h4>
-          <p>{recipe.picture}</p>
-          <p>{recipe.spirit}</p>
+          <img className="drinkImage" src={recipe.fileUrl} alt="Cocktail Picture" />
+          <p>Main Spirit: {recipe.spirit}</p>
           <p>{recipe.ingredients1}</p>
           <p>{recipe.ingredients2}</p>
           <p>{recipe.directions}</p>
-          {/* {recipes > 1 && ( */}
             <>
           <div>
             <Button
@@ -95,7 +94,6 @@ export default function SavedRecipes() {
             
           </div>
           </>
-            {/* )} */}
         </div>
       ))}
     </body>

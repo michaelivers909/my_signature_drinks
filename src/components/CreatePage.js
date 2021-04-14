@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Button, Card, Form, Alert, Container } from "react-bootstrap";
@@ -11,11 +11,9 @@ const CreatePage = () => {
   const {currentUser} = useContext(AuthContext);
   const currentUserEmail = currentUser ? currentUser.email : "";
   const owner = currentUser ? currentUser.uid : 'unknown';
-  const uploadedImage = React.useRef(null);
-  const imageUploader = React.useRef(null);
-  // const [recipe, setRecipe] = useState("");
   const [name, setName] = useState("");
-  const [picture, setPicture] = useState("");
+  const [fileUrl, setFileUrl] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [spirit, setSpirit] = useState("");
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
@@ -24,26 +22,22 @@ const CreatePage = () => {
 
   const db = firebase.firestore().collection("recipes");
 
-  const handleImageUpload = (e) => {
-    const [file] = e.target.files;
-    if (file) {
-      const reader = new FileReader();
-      const { current } = uploadedImage;
-      current.file = file;
-      reader.onload = (e) => {
-        current.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    setFileUrl(await fileRef.getDownloadURL());
   };
 
   function addRecipe(newRecipe) {
-    db.doc(newRecipe.id)
+    try {
+      setError("");
+      db.doc(newRecipe.id)
       .set(newRecipe)
-      .catch((err) => {
-        console.error(err);
-      });
-      history.push("/saved")
+    } catch {
+      setError("Unable to add new recipe to Saved Recipes.")
+    } history.push("/saved")
   }
 
   return (
@@ -51,10 +45,10 @@ const CreatePage = () => {
       <Form className="bgParchGrey fontM">
         <h4 className="text-center">{`Welcome ${currentUserEmail}`}</h4>
         <h1 className="text-center fontDafoe m-2">Create a Cocktail Recipe</h1>
-        <Form.Group>
-          <Form.Label className="margin-auto">Cocktail Name</Form.Label>
+        <Form.Group className="mr-5 ml-5 mb-2">
+          <Form.Label column="lg">Cocktail Name</Form.Label>
           <Form.Control
-            className="text-center justify-element-center"
+            className="text-center"
             style={{ maxWidth: 600 }}
             type="text"
             placeholder="Enter Name Of Cocktail"
@@ -62,29 +56,16 @@ const CreatePage = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </Form.Group>
-        <Form.Group>
-          <div className="text-center mb-4">
-            <input
-              value={picture}
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              ref={imageUploader}
-              style={{
-                display: "none",
-              }}
-            />
-            <div
-              className="imgUpload mb-2"
-              onClick={() => imageUploader.current.click()}
-            >
-              <img className="drinkImage" ref={uploadedImage} />
-            </div>
-            Click to upload Image
-          </div>
+        <Form.Group className="mr-5 ml-5 mb-2">
+          <Form.Label column="lg">Choose an Image for Your Recipe</Form.Label>
+          <Form.File
+          type="file"
+          onChange={(e) => setFileName(e.target.files[0].name), onFileChange}
+        />
+        <img className="drinkImage" src = {fileUrl}/>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>Select Main Spirit</Form.Label>
+        <Form.Group className="mr-5 ml-5 mb-2">
+          <Form.Label column="lg">Select Main Spirit</Form.Label>
           <Form.Control
             className="text-center"
             style={{ maxWidth: 150 }}
@@ -102,8 +83,8 @@ const CreatePage = () => {
             <option value="Other">Other</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>Spirits and Measurements</Form.Label>
+        <Form.Group className="mr-5 ml-5 mb-2">
+          <Form.Label column="lg">Spirits and Measurements</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Enter all spirits and measurements here."
@@ -111,8 +92,8 @@ const CreatePage = () => {
             onChange={(e) => setIngredients1(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>All other ingredients</Form.Label>
+        <Form.Group className="mr-5 ml-5 mb-2">
+          <Form.Label column="lg">All Other Ingredients</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Enter sweet, bitter, juices, syrups, soda, egg whites, and all other ingredients & measurements here."
@@ -120,8 +101,8 @@ const CreatePage = () => {
             onChange={(e) => setIngredients2(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>Directions</Form.Label>
+        <Form.Group className="mr-5 ml-5 mb-2">
+          <Form.Label column="lg">Directions</Form.Label>
           <Form.Control
             as="textarea"
             placeholder="Enter directions here."
@@ -130,14 +111,15 @@ const CreatePage = () => {
           />
         </Form.Group>
       </Form>
-      <div>
+      <div className="mr-5 ml-5 mb-2">
+        {error && <Alert variant="danger">{error}</Alert>}
         <Button
           type="submit"
           variant="info"
           onClick={() => {
             addRecipe({
               name,
-              picture,
+              fileUrl,
               spirit,
               ingredients1,
               ingredients2,
