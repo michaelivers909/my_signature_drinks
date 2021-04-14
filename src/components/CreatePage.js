@@ -1,7 +1,7 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { Button, Card, Form, Alert, Row, Col, Container } from "react-bootstrap";
+import { Button, Form, Alert, Row, Col } from "react-bootstrap";
 import firebase from "../Firebase";
 import { v4 as uuidv4 } from "uuid";
 import "../Style.css";
@@ -13,7 +13,7 @@ const CreatePage = () => {
   const owner = currentUser ? currentUser.uid : 'unknown';
   const [name, setName] = useState("");
   const [fileUrl, setFileUrl] = useState(null);
-  const [fileName, setFileName] = useState("");
+  const [setFileName] = useState("");
   const [spirit, setSpirit] = useState("");
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
@@ -69,7 +69,7 @@ const CreatePage = () => {
           type="file"
           onChange={(e) => setFileName(e.target.files[0].name), onFileChange}
         />
-        <img className="drinkImage" src = {fileUrl}/>
+        <img className="drinkImage" src = {fileUrl} alt="drink"/>
         </Col>
         </Row>
         </Form.Group>

@@ -63,7 +63,7 @@ export default function SavedRecipes() {
   }
 
   return (
-    <section id="bgParchGrey" style={{ minHeight: 800 }}>
+    <section className="mb-4"id="bgParchGrey" style={{ minHeight: 800 }}>
       <h1 className="text-center fontDafoe">My Saved Recipes</h1>
       {error && <Alert variant="danger">{error}</Alert>}
       <Accordion>
@@ -76,7 +76,7 @@ export default function SavedRecipes() {
             <img
               className="drinkImage mb-2"
               src={recipe.fileUrl}
-              alt="Cocktail Picture"
+              alt="Cocktail"
             />
             <div>
             <Accordion.Toggle as={Button} variant="info" eventKey="1">

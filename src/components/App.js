@@ -35,15 +35,15 @@ function App() {
   return (
     <div>
       <Router>
-      {/* <div> */}
-            {/* {error &&  */}
-              {/* // <Alert className="text-center" variant="danger"> */}
-                {/* {error} */}
-              {/* </Alert> */}
-            {/* // } */}
-            {/* </div> */}
+      <div>
+            {error && 
+              <Alert className="text-center" variant="danger">
+                {error}
+              </Alert>
+            } 
+            </div>
         {currentUser && (
-          // <>
+          <>
             <Nav className="pills" justify variant="pills info">
               <Nav.Item>
                 <Nav.Link className="white" href="/Create">
@@ -67,11 +67,11 @@ function App() {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            )}
-            {/* </> */}
             
-          {/* </> */}
-        {/* )} */}
+            </>
+            
+          
+        )}
         <Switch>
           <ProtectedRoutes
             currentUser={currentUser}
@@ -116,6 +116,6 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
 export default App;
