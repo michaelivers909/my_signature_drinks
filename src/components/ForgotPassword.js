@@ -32,7 +32,7 @@ export default function ForgotPassword() {
             className="justify-content-center"
             style={{ minHeight: "100vh", maxWidth: 600}}
         >
-        <Card border="secondary" className="bgParchGrey fontM">
+        <Card border="secondary" className="fontM" id="bgParchGrey">
             <Card.Body className="text-center mb-4 bgParchGrey">
                 <h2 className="fontDafoe">Reset Password</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -43,7 +43,7 @@ export default function ForgotPassword() {
                         <Form.Control type="email" ref={emailRef} required />
                     </Form.Group>
                     
-                    <Button variant="info" disabled={loading} className="w-50" type="submit">Reset Password</Button>
+                    <Button variant="info" disabled={loading} className="w-50" type="submit">Reset</Button>
                 </Form>
                 <div className="w-100 text-center mt-2 ">
                     <Link to="/login">Login</Link>

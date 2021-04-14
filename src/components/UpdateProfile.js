@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Card, Alert, Container } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container, Col, Row } from "react-bootstrap";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import "../Style.css";
@@ -52,9 +52,11 @@ export default function UpdateProfile() {
   }
 
   return (
-        <Container className="m-auto text-center justify-content-center fontM" style={{ minHeight: "50vh", maxWidth: "600" }}>
-        <Card border="secondary" className="bgParchGrey">
-          <Card.Body>
+        <Container className="text-center fontM" style={{ minHeight: "50vh", maxWidth: "600" }}>
+        <section border="secondary" id="bgParchGrey">
+        <Row>
+        <Col md={{ span: 6, offset: 3 }}>
+            
             <h2 className="fontDafoe">Update Profile</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && <Alert variant="success">{success}</Alert>}
@@ -105,8 +107,9 @@ export default function UpdateProfile() {
             <div className="w-100 text-center mt-4">
               <Link to="/create">Cancel</Link>
             </div>
-          </Card.Body>
-        </Card>
+            </Col>
+            </Row>
+        </section>
         </Container>
     
   );

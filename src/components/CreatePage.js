@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { Button, Card, Form, Alert, Container } from "react-bootstrap";
+import { Button, Card, Form, Alert, Row, Col, Container } from "react-bootstrap";
 import firebase from "../Firebase";
 import { v4 as uuidv4 } from "uuid";
 import "../Style.css";
@@ -41,11 +41,13 @@ const CreatePage = () => {
   }
 
   return (
-    <body className="bgParchGrey">
-      <Form className="bgParchGrey fontM">
+    <section id="bgParchGrey">
+      <Form className="fontM">
         <h4 className="text-center">{`Welcome ${currentUserEmail}`}</h4>
         <h1 className="text-center fontDafoe m-2">Create a Cocktail Recipe</h1>
         <Form.Group className="mr-5 ml-5 mb-2">
+        <Row>
+        <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">Cocktail Name</Form.Label>
           <Form.Control
             className="text-center"
@@ -55,19 +57,28 @@ const CreatePage = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          </Col>
+          </Row>
         </Form.Group>
         <Form.Group className="mr-5 ml-5 mb-2">
+        <Row>
+        <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">Choose an Image for Your Recipe</Form.Label>
           <Form.File
+          className="ml-auto"
           type="file"
           onChange={(e) => setFileName(e.target.files[0].name), onFileChange}
         />
         <img className="drinkImage" src = {fileUrl}/>
+        </Col>
+        </Row>
         </Form.Group>
         <Form.Group className="mr-5 ml-5 mb-2">
+        <Row>
+        <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">Select Main Spirit</Form.Label>
           <Form.Control
-            className="text-center"
+            className="text-center mx-auto"
             style={{ maxWidth: 150 }}
             as="select"
             value={spirit}
@@ -82,33 +93,50 @@ const CreatePage = () => {
             <option value="Whiskey">Misc. Whiskey</option>
             <option value="Other">Other</option>
           </Form.Control>
+          </Col>
+          </Row>
         </Form.Group>
         <Form.Group className="mr-5 ml-5 mb-2">
+        <Row>
+        <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">Spirits and Measurements</Form.Label>
           <Form.Control
             as="textarea"
+            style={{ maxWidth: 600 }}
             placeholder="Enter all spirits and measurements here."
             value={ingredients1}
             onChange={(e) => setIngredients1(e.target.value)}
           ></Form.Control>
+          </Col>
+          </Row>
         </Form.Group>
         <Form.Group className="mr-5 ml-5 mb-2">
+        <Row>
+        <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">All Other Ingredients</Form.Label>
           <Form.Control
             as="textarea"
+            style={{ maxWidth: 600 }}
             placeholder="Enter sweet, bitter, juices, syrups, soda, egg whites, and all other ingredients & measurements here."
             value={ingredients2}
             onChange={(e) => setIngredients2(e.target.value)}
           ></Form.Control>
+          </Col>
+          </Row>
         </Form.Group>
         <Form.Group className="mr-5 ml-5 mb-2">
+        <Row>
+        <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">Directions</Form.Label>
           <Form.Control
             as="textarea"
+            style={{ maxWidth: 600 }}
             placeholder="Enter directions here."
             value={directions}
             onChange={(e) => setDirections(e.target.value)}
           />
+          </Col>
+          </Row>
         </Form.Group>
       </Form>
       <div className="mr-5 ml-5 mb-2">
@@ -132,7 +160,7 @@ const CreatePage = () => {
           Save Recipe
         </Button>
       </div>
-    </body>
+    </section>
   );
 };
 

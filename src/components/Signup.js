@@ -36,7 +36,7 @@ export default function Signup() {
             className="justify-content-center"
             style={{ minHeight: "100vh", maxWidth: 600}}
         >
-        <Card border="secondary" className="bgParchGrey fontM">
+        <Card border="secondary" className="fontM" id="bgParchGrey">
             <Card.Body className="text-center mb-4">
                 <h2 className="fontDafoe">Sign Up To Make Cocktail Recipes!</h2>
                 {error && <Alert variant="danger">{error}</Alert>}

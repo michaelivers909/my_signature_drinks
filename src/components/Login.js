@@ -31,7 +31,7 @@ export default function Login() {
             className="justify-content-center"
             style={{ minHeight: "100vh", maxWidth: 600}}
         >
-      <Card border="secondary" className="bgParchGrey fontM">
+      <Card border="secondary" className="FontM" id="bgParchGrey">
         <Card.Body className="text-center mb-4">
           <h2 className="fontDafoe">Log In To Create Cocktail Recipes!</h2>
           {error && <Alert variant="danger">{error}</Alert>}
