@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { Button, Col, Row, Alert } from "react-bootstrap";
+import { Button, Col, Row, Alert, Container, Modal } from "react-bootstrap";
 import firebase from "../Firebase";
 import "../Style.css";
 
@@ -15,6 +15,9 @@ export default function SavedRecipes() {
   const [recipeEdit, setRecipeEdit] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const db = firebase.firestore().collection("recipes");
 
@@ -52,11 +55,15 @@ export default function SavedRecipes() {
       setError("Something went wrong, unable to edit recipe.");
     }
     setRecipeEdit(null);
+    setName("");
+    setIngredients1("");
+    setIngredients2("");
+    setDirections("");
   }
 
   return (
     <>
-      <section className="mb-4" id="bgParchGrey" style={{ minHeight: 800 }}>
+      <Container fluid className="mb-4" id="bgParchGrey" style={{ minHeight: 800 }}>
         <h1 className="text-center fontDafoe">My Saved Recipes</h1>
         {error && <Alert variant="danger">{error}</Alert>}
         <Row>
@@ -65,11 +72,25 @@ export default function SavedRecipes() {
             {recipes.map((recipe) => (
               <div className="fontM" key={recipe.id}>
                 {recipe.id === recipeEdit && (
+                  <>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
+                  <div>
+                  <Button
+                    variant="success"
+                    size="sm"
+                    onClick={() =>
+                      editRecipe({
+                        name, 
+                        id: recipe.id
+                      })
+                    }
+                    >Save Name Edit</Button>
+                    </div>
+                  </>
                 )}
                 <h4>{recipe.name}</h4>
                 <img
@@ -80,6 +101,7 @@ export default function SavedRecipes() {
                 <main>
                   <p>Main Spirit: {recipe.spirit}</p>
                   {recipe.id === recipeEdit && (
+                    <>
                     <textarea
                       cols="35"
                       rows="3"
@@ -87,9 +109,21 @@ export default function SavedRecipes() {
                       value={ingredients1}
                       onChange={(e) => setIngredients1(e.target.value)}
                     />
+                    <Button
+                      variant="success"
+                      size="sm"
+                      onClick={() =>
+                        editRecipe({
+                        ingredients1, 
+                        id: recipe.id
+                      })
+                    }
+                    >Save Spirits Edit</Button>
+                    </>
                   )}
                   <p className="space">{recipe.ingredients1}</p>
                   {recipe.id === recipeEdit && (
+                    <>
                     <textarea
                       cols="35"
                       rows="3"
@@ -97,9 +131,21 @@ export default function SavedRecipes() {
                       value={ingredients2}
                       onChange={(e) => setIngredients2(e.target.value)}
                     />
+                    <Button
+                    variant="success"
+                    size="sm"
+                    onClick={() =>
+                      editRecipe({
+                        ingredients2, 
+                        id: recipe.id
+                      })
+                    }
+                    >Save Ingredients Edit</Button>
+                    </>
                   )}
                   <p className="space">{recipe.ingredients2}</p>
                   {recipe.id === recipeEdit && (
+                    <>
                     <textarea
                       cols="35"
                       rows="3"
@@ -107,37 +153,56 @@ export default function SavedRecipes() {
                       value={directions}
                       onChange={(e) => setDirections(e.target.value)}
                     ></textarea>
+                    <Button
+                    variant="success"
+                    size="sm"
+                    onClick={() =>
+                      editRecipe({
+                        directions, 
+                        id: recipe.id
+                      })
+                    }
+                    >Save Directions Edit</Button>
+                    </>
                   )}
                   <p>{recipe.directions}</p>
                   <div>
-                    <Button
-                      className="m-2"
-                      variant="info"
-                      onClick={() => deleteRecipe(recipe)}
-                    >
-                      Delete Recipe
-                    </Button>
                     {recipe.id === recipeEdit ? (
-                      <Button
-                        className="m-2"
-                        variant="info"
-                        onClick={() =>
-                          editRecipe({
-                            name,
-                            fileUrl: recipe.fileUrl,
-                            spirit: recipe.spirit,
-                            ingredients1,
-                            ingredients2,
-                            directions,
-                            id: recipe.id,
-                          })
-                        }
-                      >
-                        Save Edit
+                      <>
+                      <Button variant="danger" size="sm" className="mb-2"onClick={handleShow}>
+                        Delete Recipe
                       </Button>
+                
+                      <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Delete Recipe</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Are you sure you'd like to delete?</Modal.Body>
+                        <Modal.Footer>
+                          <Button variant="primary" onClick={handleClose}>
+                            Close
+                          </Button>
+                          <Button variant="danger" onClick={() => {deleteRecipe(recipe); handleClose()}}>
+                            Delete Recipe
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+                        <div>
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            className="mb-4"
+                            onClick={() => setRecipeEdit(null)}
+                          >
+                            Cancel Edit
+                          </Button>
+                        </div>
+                      </>
                     ) : (
                       <Button
-                        variant="info"
+                        className="mb-4"
+                        variant="outline-info"
+                        size="sm"
                         onClick={() => setRecipeEdit(recipe.id)}
                       >
                         Edit Recipe
@@ -145,11 +210,20 @@ export default function SavedRecipes() {
                     )}
                   </div>
                 </main>
+                <Button
+                  variant="link"
+                  onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo(0, 0);
+                }}
+              >
+                Back to Top
+              </Button>
               </div>
             ))}
           </Col>
         </Row>
-      </section>
+      </Container>
     </>
   );
 }

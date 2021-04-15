@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import { Button, Form, Alert, Row, Col } from "react-bootstrap";
+import { Button, Form, Alert, Row, Col, Container } from "react-bootstrap";
 import firebase from "../Firebase";
 import { v4 as uuidv4 } from "uuid";
 import "../Style.css";
@@ -41,7 +41,7 @@ const CreatePage = () => {
   }
 
   return (
-    <section id="bgParchGrey">
+    <Container fluid border="primary" id="bgParchGrey">
       <Form className="fontM">
         <h4 className="text-center">{`Welcome ${currentUserEmail}`}</h4>
         <h1 className="text-center fontDafoe m-2">Create a Cocktail Recipe</h1>
@@ -65,7 +65,6 @@ const CreatePage = () => {
         <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">Choose an Image for Your Recipe</Form.Label>
           <Form.File
-          className="ml-auto"
           type="file"
           onChange={(e) => setFileName(e.target.files[0].name), onFileChange}
         />
@@ -160,7 +159,7 @@ const CreatePage = () => {
           Save Recipe
         </Button>
       </div>
-    </section>
+    </Container>
   );
 };
 
