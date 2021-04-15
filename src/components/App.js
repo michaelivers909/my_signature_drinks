@@ -11,7 +11,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory,
   Redirect,
 } from "react-router-dom";
 import ProtectedRoutes from "../shared/ProtectedRoutes";
@@ -19,17 +18,15 @@ import "../Style.css";
 
 function App() {
   const [error, setError] = useState("");
-  const history = useHistory();
   const { currentUser, logOut } = useContext(AuthContext);
 
   async function handleLogOut() {
     setError("");
     try {
       await logOut();
-      history.push("/Login");
     } catch {
       setError("Failed to Log Out.");
-    }
+    } 
   }
 
   return (
@@ -40,7 +37,7 @@ function App() {
               <Alert className="text-center" variant="danger">
                 {error}
               </Alert>
-            } 
+            }
             </div>
         {currentUser && (
           <>
