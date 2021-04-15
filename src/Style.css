@@ -50,4 +50,8 @@
   align-items: center;
 }
 
+.space {
+  white-space: pre-wrap;
+}
+
 

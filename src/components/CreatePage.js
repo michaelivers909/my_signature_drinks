@@ -69,7 +69,7 @@ const CreatePage = () => {
           type="file"
           onChange={(e) => setFileName(e.target.files[0].name), onFileChange}
         />
-        <img className="drinkImage" src = {fileUrl} alt="drink"/>
+        <img className="drinkImage" src = {fileUrl} alt=""/>
         </Col>
         </Row>
         </Form.Group>
