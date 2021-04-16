@@ -17,6 +17,7 @@ export default function SavedRecipes() {
   const currentUserId = currentUser ? currentUser.uid : null;
   const [recipes, setRecipes] = useState([]);
   const [name, setName] = useState("");
+  const [spirit, setSpirit] = useState("");
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
   const [directions, setDirections] = useState("");
@@ -55,7 +56,7 @@ export default function SavedRecipes() {
   }
 
   function setEdit(recipe) {
-    // setRecipeEdit(recipe.id);
+    setSpirit(recipe.spirit);
     setIngredients1(recipe.ingredients1);
     setIngredients2(recipe.ingredients2);
     setDirections(recipe.directions);
@@ -103,6 +104,7 @@ export default function SavedRecipes() {
                   // value={spirit}
                   // onChange={(e) => setSpirit(e.target.value)}
                 >
+                  <option value="No Alcohol">No Alcohol</option>
                   <option value="Vodka">Vodka</option>
                   <option value="Gin">Gin</option>
                   <option value="Rum">Rum</option>
@@ -142,14 +144,34 @@ export default function SavedRecipes() {
                     onChange={(e) => setName(e.target.value)}
                   />
                 )}
-                <h4>{recipe.name}</h4>
+                <h4 className="font-weight-bold">{recipe.name}</h4>
                 <img
                   className="drinkImage mb-2"
                   src={recipe.fileUrl}
                   alt="Cocktail"
                 />
                 <main>
-                  <p>Main Spirit: {recipe.spirit}</p>
+                  {recipe.id === recipeEdit && (
+                    <Form.Control
+                    size="sm"
+                    className="text-center mb-2 mx-auto"
+                    style={{ fontSize: 12, maxWidth: 150 }}
+                    as="select"
+                    value={spirit}
+                    onChange={(e) => setSpirit(e.target.value)}
+                  >
+                    <option value="No Alcohol">No Alcohol</option>
+                    <option value="Vodka">Vodka</option>
+                    <option value="Gin">Gin</option>
+                    <option value="Rum">Rum</option>
+                    <option value="Tequila">Tequila</option>
+                    <option value="Bourbon">Bourbon</option>
+                    <option value="Scotch">Scotch</option>
+                    <option value="Whiskey">Misc. Whiskey</option>
+                    <option value="Other">Other</option>
+                  </Form.Control>
+                  )}
+                  <p className="font-weight-bold">Main Spirit: {recipe.spirit}</p>
                   {recipe.id === recipeEdit && (
                     <textarea
                       cols="35"
@@ -221,11 +243,11 @@ export default function SavedRecipes() {
                             setEdit(recipe);
                             editRecipe({
                               name,
+                              spirit,
                               ingredients1,
                               ingredients2,
                               directions,
                               fileUrl: recipe.fileUrl,
-                              spirit: recipe.spirit,
                               id: recipe.id,
                             });
                           }}
@@ -245,7 +267,7 @@ export default function SavedRecipes() {
                       </>
                     ) : (
                       <Button
-                        className="mb-4"
+                        className="font-weight-bold mb-1"
                         variant="outline-info"
                         size="sm"
                         onClick={() => {
@@ -259,6 +281,7 @@ export default function SavedRecipes() {
                   </div>
                 </main>
                 <Button
+                  className="mb-5"
                   variant="link"
                   onClick={(e) => {
                     e.preventDefault();
@@ -267,6 +290,7 @@ export default function SavedRecipes() {
                 >
                   Back to Top
                 </Button>
+                
               </div>
             ))}
           </Col>

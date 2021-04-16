@@ -43,7 +43,7 @@ const CreatePage = () => {
     } history.push("/saved")
   }
 
-  return (
+  return ( 
     <Container fluid border="primary" id="bgParchGrey">
       <Form className="fontM">
         <h4 className="text-center">{`Welcome ${currentUserEmail}`}</h4>
@@ -51,7 +51,7 @@ const CreatePage = () => {
         <Form.Group className="mr-5 ml-5 mb-2">
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Form.Label column="lg">Cocktail Name</Form.Label>
+          <Form.Label className="font-weight-bold" column="lg">Cocktail Name</Form.Label>
           <Form.Control
             className="text-center"
             style={{ maxWidth: 600 }}
@@ -66,7 +66,7 @@ const CreatePage = () => {
         <Form.Group className="mr-5 ml-5 mb-2">
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Form.Label column="lg">Choose an Image for Your Recipe</Form.Label>
+          <Form.Label className="font-weight-bold" column="lg">Choose an Image for Your Recipe</Form.Label>
           {loading ? <h4>Loading...</h4> : null}
           <Form.File
           type="file"
@@ -79,7 +79,7 @@ const CreatePage = () => {
         <Form.Group className="mr-5 ml-5 mb-2">
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Form.Label column="lg">Select Main Spirit or Leave Blank if Non-Alcoholic</Form.Label>
+          <Form.Label className="font-weight-bold" column="lg">Select Main Spirit or Leave Blank if Non-Alcoholic</Form.Label>
           <Form.Control
             className="text-center mx-auto"
             style={{ maxWidth: 160 }}
@@ -104,7 +104,7 @@ const CreatePage = () => {
         <Form.Group className="mr-5 ml-5 mb-2">
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Form.Label column="lg">Spirits and Measurements</Form.Label>
+          <Form.Label className="font-weight-bold" column="lg">Spirits and Measurements</Form.Label>
           <Form.Control
             as="textarea"
             style={{ maxWidth: 600 }}
@@ -118,7 +118,7 @@ const CreatePage = () => {
         <Form.Group className="mr-5 ml-5 mb-2">
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Form.Label column="lg">All Other Ingredients</Form.Label>
+          <Form.Label className="font-weight-bold" column="lg">All Other Ingredients</Form.Label>
           <Form.Control
             as="textarea"
             style={{ maxWidth: 600 }}
@@ -132,7 +132,7 @@ const CreatePage = () => {
         <Form.Group className="mr-5 ml-5 mb-2">
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Form.Label column="lg">Directions</Form.Label>
+          <Form.Label className="font-weight-bold" column="lg">Directions</Form.Label>
           <Form.Control
             as="textarea"
             style={{ maxWidth: 600 }}

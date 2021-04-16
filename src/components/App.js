@@ -41,7 +41,7 @@ function App() {
             </div>
         {currentUser && (
           <>
-            <Nav className="pills" justify variant="pills info">
+            <Nav className="fontM font-weight-bold pills" justify variant="pills info">
               <Nav.Item>
                 <Nav.Link className="white" href="/Create">
                   Create Cocktail

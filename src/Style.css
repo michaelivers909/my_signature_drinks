@@ -15,6 +15,7 @@
 
 .white {
   color: white;
+  cursor: pointer;
 }
 
 .drinkImage {
@@ -33,6 +34,10 @@
 
 .space {
   white-space: pre-wrap;
+}
+
+.dropdown-toggle.nav-link span:hover {
+  color: #0056b3;
 }
 
 
