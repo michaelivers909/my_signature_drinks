@@ -14,6 +14,7 @@ const CreatePage = () => {
   const [name, setName] = useState("");
   const [fileUrl, setFileUrl] = useState(null);
   const [setFileName] = useState("");
+  const [loading, setLoading] = useState(false);
   const [spirit, setSpirit] = useState("");
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
@@ -23,11 +24,13 @@ const CreatePage = () => {
   const db = firebase.firestore().collection("recipes");
 
   const onFileChange = async (e) => {
+    setLoading(true);
     const file = e.target.files[0];
     const storageRef = firebase.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
     setFileUrl(await fileRef.getDownloadURL());
+    setLoading(false);
   };
 
   function addRecipe(newRecipe) {
@@ -64,6 +67,7 @@ const CreatePage = () => {
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <Form.Label column="lg">Choose an Image for Your Recipe</Form.Label>
+          {loading ? <h4>Loading...</h4> : null}
           <Form.File
           type="file"
           onChange={(e) => setFileName(e.target.files[0].name), onFileChange}
@@ -75,14 +79,16 @@ const CreatePage = () => {
         <Form.Group className="mr-5 ml-5 mb-2">
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Form.Label column="lg">Select Main Spirit</Form.Label>
+          <Form.Label column="lg">Select Main Spirit or Leave Blank if Non-Alcoholic</Form.Label>
           <Form.Control
             className="text-center mx-auto"
-            style={{ maxWidth: 150 }}
+            style={{ maxWidth: 160 }}
             as="select"
             value={spirit}
             onChange={(e) => setSpirit(e.target.value)}
           >
+            <option>Select a Spirit</option>
+            <option value="No Alcohol">No Alcohol</option>
             <option value="Vodka">Vodka</option>
             <option value="Gin">Gin</option>
             <option value="Rum">Rum</option>
