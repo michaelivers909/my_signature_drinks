@@ -21,6 +21,8 @@ export default function SavedRecipes() {
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
   const [directions, setDirections] = useState("");
+  // const [orderRecipes, setOrderRecipes] = useState(1);
+  // const [sortKey, setSortKey] = useState("name");
   const [recipeEdit, setRecipeEdit] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -45,6 +47,25 @@ export default function SavedRecipes() {
   useEffect(() => {
     getRecipes();
   }, []);
+
+  useEffect(() => {
+  const sortRecipes = type => {
+    // const types = {
+      // name: "recipe.name",
+      // fileUrl: "recipe.fileUrl",
+      // spirit: "recipe.spirit",
+      // ingredients1: "recipe.ingredients1",
+      // ingredients2: "recipe.ingredients2",
+      // directions: "recipe.directions",
+    // };
+      // const sortProperty = types[type];
+      const recipeOrder = [...recipes].sort((a, b) => 
+      a[name] - b[name] ? 1 : -1);
+      console.log(recipeOrder);
+      setRecipes(recipeOrder);
+  
+    sortRecipes(recipes);
+  },[recipes]);
 
   function deleteRecipe(recipe) {
     try {
@@ -122,11 +143,11 @@ export default function SavedRecipes() {
                   className="text-center"
                   style={{ fontSize: 12, maxWidth: 150 }}
                   as="select"
-                  // value={spirit}
-                  // onChange={(e) => setSpirit(e.target.value)}
+                  // value={recipeOrder}
+                  onChange={(e) => setRecipes(e.target.value)}
                 >
-                  <option value="A-Z">A-Z</option>
-                  <option value="Z-A">Z-A</option>
+                  <option value="1">A-Z</option>
+                  <option value="-1">Z-A</option>
                 </Form.Control>
               </div>
             </Form.Row>
@@ -290,7 +311,6 @@ export default function SavedRecipes() {
                 >
                   Back to Top
                 </Button>
-                
               </div>
             ))}
           </Col>
