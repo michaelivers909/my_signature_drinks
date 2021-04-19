@@ -7,7 +7,7 @@ import {
   Alert,
   Container,
   Modal,
-  Form,
+  Form
 } from "react-bootstrap";
 import firebase from "../Firebase";
 import "../Style.css";
@@ -22,7 +22,9 @@ export default function SavedRecipes() {
   const [ingredients2, setIngredients2] = useState("");
   const [directions, setDirections] = useState("");
   // const [orderRecipes, setOrderRecipes] = useState(1);
-  // const [sortKey, setSortKey] = useState("name");
+  const [selectMain, setSelectMain] = useState("");
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [sortOrder, setSortOrder] = useState("name");
   const [recipeEdit, setRecipeEdit] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -48,24 +50,24 @@ export default function SavedRecipes() {
     getRecipes();
   }, []);
 
+  // const sortedRecipes = [...recipes]
+  // .sort((a, b) => {
+    // if (a[name]() < b[name]()) {
+      // return -1 * sortOrder;
+    // }
+    // if (a.name.toLowerCase() > b.name.toLowerCase()) {
+      // return 1 * sortOrder;
+    // }
+    // return 0;
+  // })
+
   useEffect(() => {
-  const sortRecipes = type => {
-    // const types = {
-      // name: "recipe.name",
-      // fileUrl: "recipe.fileUrl",
-      // spirit: "recipe.spirit",
-      // ingredients1: "recipe.ingredients1",
-      // ingredients2: "recipe.ingredients2",
-      // directions: "recipe.directions",
-    // };
-      // const sortProperty = types[type];
-      const recipeOrder = [...recipes].sort((a, b) => 
-      a[name] - b[name] ? 1 : -1);
-      console.log(recipeOrder);
-      setRecipes(recipeOrder);
-  
-    sortRecipes(recipes);
-  },[recipes]);
+    setFilteredRecipes(
+      recipes.filter((recipe) =>
+      recipe.spirit.toLowerCase().includes(selectMain.toLowerCase())
+    ) 
+  ); console.log(filteredRecipes);
+  }, [selectMain, recipes]);
 
   function deleteRecipe(recipe) {
     try {
@@ -123,8 +125,8 @@ export default function SavedRecipes() {
                   style={{ fontSize: 12, maxWidth: 150 }}
                   as="select"
                   // value={spirit}
-                  // onChange={(e) => setSpirit(e.target.value)}
-                >
+                  onChange={(e) => setSelectMain(e.target.value)}
+                  >
                   <option value="No Alcohol">No Alcohol</option>
                   <option value="Vodka">Vodka</option>
                   <option value="Gin">Gin</option>
@@ -143,8 +145,8 @@ export default function SavedRecipes() {
                   className="text-center"
                   style={{ fontSize: 12, maxWidth: 150 }}
                   as="select"
-                  // value={recipeOrder}
-                  onChange={(e) => setRecipes(e.target.value)}
+                  // value={sortOrder}
+                  // onChange={(e) => sortedArray(e.target.value)}
                 >
                   <option value="1">A-Z</option>
                   <option value="-1">Z-A</option>
@@ -239,7 +241,7 @@ export default function SavedRecipes() {
                             <Modal.Title>Delete Recipe</Modal.Title>
                           </Modal.Header>
                           <Modal.Body>
-                            Are you sure you'd like to delete?
+                            Are you sure you'd like to delete this recipe?
                           </Modal.Body>
                           <Modal.Footer>
                             <Button variant="primary" onClick={handleClose}>

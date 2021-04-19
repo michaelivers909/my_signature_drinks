@@ -21,6 +21,8 @@
 .drinkImage {
   max-height: 300px;
   max-width: 300px;
+  border-radius: 40px;
+  border: 2px solid black;
 }
 
 #bgParchGrey {
