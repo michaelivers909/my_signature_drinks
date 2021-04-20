@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import {
   Button,
@@ -21,10 +21,8 @@ export default function SavedRecipes() {
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
   const [directions, setDirections] = useState("");
-  // const [orderRecipes, setOrderRecipes] = useState(1);
   const [selectMain, setSelectMain] = useState("");
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
-  const [sortOrder, setSortOrder] = useState("name");
+  const [sortOrder, setSortOrder] = useState("1");
   const [recipeEdit, setRecipeEdit] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -50,24 +48,21 @@ export default function SavedRecipes() {
     getRecipes();
   }, []);
 
-  // const sortedRecipes = [...recipes]
-  // .sort((a, b) => {
-    // if (a[name]() < b[name]()) {
-      // return -1 * sortOrder;
-    // }
-    // if (a.name.toLowerCase() > b.name.toLowerCase()) {
-      // return 1 * sortOrder;
-    // }
-    // return 0;
-  // })
+  const filteredRecipes = useMemo(()=>{
+    let filtered = recipes.filter((recipe) =>
+          recipe.spirit.toLowerCase().includes(selectMain.toLowerCase())
+        ) 
+      return filtered.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1 * sortOrder;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1 * sortOrder;
+        }
+        return 0;
+      })
+    }, [selectMain, recipes, sortOrder])
 
-  useEffect(() => {
-    setFilteredRecipes(
-      recipes.filter((recipe) =>
-      recipe.spirit.toLowerCase().includes(selectMain.toLowerCase())
-    ) 
-  ); console.log(filteredRecipes);
-  }, [selectMain, recipes]);
 
   function deleteRecipe(recipe) {
     try {
@@ -124,9 +119,9 @@ export default function SavedRecipes() {
                   className="text-center mb-2"
                   style={{ fontSize: 12, maxWidth: 150 }}
                   as="select"
-                  // value={spirit}
                   onChange={(e) => setSelectMain(e.target.value)}
                   >
+                  <option value="">All Spirits</option>
                   <option value="No Alcohol">No Alcohol</option>
                   <option value="Vodka">Vodka</option>
                   <option value="Gin">Gin</option>
@@ -145,8 +140,8 @@ export default function SavedRecipes() {
                   className="text-center"
                   style={{ fontSize: 12, maxWidth: 150 }}
                   as="select"
-                  // value={sortOrder}
-                  // onChange={(e) => sortedArray(e.target.value)}
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value)}
                 >
                   <option value="1">A-Z</option>
                   <option value="-1">Z-A</option>
@@ -158,7 +153,7 @@ export default function SavedRecipes() {
         <Row>
           <Col md={{ span: 6, offset: 3 }}>
             {loading ? <h1>Loading...</h1> : null}
-            {recipes.map((recipe) => (
+            {filteredRecipes.map((recipe) => (
               <div className="fontM" key={recipe.id}>
                 {recipe.id === recipeEdit && (
                   <input
