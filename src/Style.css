@@ -9,7 +9,7 @@
 }
 
 .pills {
-  background-color: rgb(7, 175, 167);
+  background-color: #17a2b8;
   border: 1px solid black;
 }
 
@@ -23,6 +23,7 @@
   max-width: 300px;
   border-radius: 40px;
   border: 2px solid black;
+  margin: auto;
 }
 
 #bgParchGrey {

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { spiritTypes } from "../shared/SpiritTypes";
 import { AuthContext } from "../contexts/AuthContext";
 import { Button, Form, Alert, Row, Col, Container } from "react-bootstrap";
 import firebase from "../Firebase";
@@ -69,6 +70,8 @@ const CreatePage = () => {
           <Form.Label className="font-weight-bold" column="lg">Choose an Image for Your Recipe</Form.Label>
           {loading ? <h4>Loading...</h4> : null}
           <Form.File
+          style={{ maxWidth: 600 }}
+          className="white pills"
           type="file"
           onChange={(e) => setFileName(e.target.files[0].name), onFileChange}
         />
@@ -86,17 +89,12 @@ const CreatePage = () => {
             as="select"
             value={spirit}
             onChange={(e) => setSpirit(e.target.value)}
-          >
-            <option>Select a Spirit</option>
-            <option value="No Alcohol">No Alcohol</option>
-            <option value="Vodka">Vodka</option>
-            <option value="Gin">Gin</option>
-            <option value="Rum">Rum</option>
-            <option value="Tequila">Tequila</option>
-            <option value="Bourbon">Bourbon</option>
-            <option value="Scotch">Scotch</option>
-            <option value="Whiskey">Misc. Whiskey</option>
-            <option value="Other">Other</option>
+          >;
+            {spiritTypes.map((option) => (
+                    <option key={option.value} value={option.value}>
+                    {option.view}
+                    </option>
+                ))}
           </Form.Control>
           </Col>
           </Row>

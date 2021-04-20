@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { spiritTypes } from "../shared/SpiritTypes";
+import { allSpirits} from "../shared/AllSpirits";
 import {
   Button,
   Col,
@@ -120,17 +122,12 @@ export default function SavedRecipes() {
                   style={{ fontSize: 12, maxWidth: 150 }}
                   as="select"
                   onChange={(e) => setSelectMain(e.target.value)}
-                  >
-                  <option value="">All Spirits</option>
-                  <option value="No Alcohol">No Alcohol</option>
-                  <option value="Vodka">Vodka</option>
-                  <option value="Gin">Gin</option>
-                  <option value="Rum">Rum</option>
-                  <option value="Tequila">Tequila</option>
-                  <option value="Bourbon">Bourbon</option>
-                  <option value="Scotch">Scotch</option>
-                  <option value="Whiskey">Misc. Whiskey</option>
-                  <option value="Other">Other</option>
+                  >;
+                    {allSpirits.map((option) => (
+                    <option key={option.value} value={option.value}>
+                    {option.view}
+                    </option>
+                    ))}
                 </Form.Control>
               </div>
               <div>
@@ -178,16 +175,12 @@ export default function SavedRecipes() {
                     as="select"
                     value={spirit}
                     onChange={(e) => setSpirit(e.target.value)}
-                  >
-                    <option value="No Alcohol">No Alcohol</option>
-                    <option value="Vodka">Vodka</option>
-                    <option value="Gin">Gin</option>
-                    <option value="Rum">Rum</option>
-                    <option value="Tequila">Tequila</option>
-                    <option value="Bourbon">Bourbon</option>
-                    <option value="Scotch">Scotch</option>
-                    <option value="Whiskey">Misc. Whiskey</option>
-                    <option value="Other">Other</option>
+                  >;
+                    {spiritTypes.map((option) => (
+                    <option key={option.value} value={option.value}>
+                    {option.view}
+                    </option>
+                ))}
                   </Form.Control>
                   )}
                   <p className="font-weight-bold">Main Spirit: {recipe.spirit}</p>
