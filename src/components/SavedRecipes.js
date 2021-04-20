@@ -148,7 +148,7 @@ export default function SavedRecipes() {
           </Col>
         </Row>
         <Row>
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col className="fontDafoe" md={{ span: 6, offset: 3 }}>
             {loading ? <h1>Loading...</h1> : null}
             {filteredRecipes.length === 0 && loading === false && (<h2>You don't have any saved signature cocktails yet!</h2>)}
             {filteredRecipes.map((recipe) => (

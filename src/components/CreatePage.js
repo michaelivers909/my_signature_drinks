@@ -68,7 +68,7 @@ const CreatePage = () => {
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <Form.Label className="font-weight-bold" column="lg">Choose an Image for Your Recipe</Form.Label>
-          {loading ? <h4>Loading...</h4> : null}
+          {loading ? <h2 className="fontDafoe">Loading...</h2> : null}
           <Form.File
           style={{ maxWidth: 600 }}
           className="white pills"
