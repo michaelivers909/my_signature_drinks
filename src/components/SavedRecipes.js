@@ -153,6 +153,7 @@ export default function SavedRecipes() {
         <Row>
           <Col md={{ span: 6, offset: 3 }}>
             {loading ? <h1>Loading...</h1> : null}
+            {filteredRecipes.length === 0 && loading === false && (<h2>You don't have any saved signature cocktails yet!</h2>)}
             {filteredRecipes.map((recipe) => (
               <div className="fontM" key={recipe.id}>
                 {recipe.id === recipeEdit && (
