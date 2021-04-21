@@ -9,6 +9,7 @@ import "../Style.css";
 
 const CreatePage = () => {
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const { currentUser } = useContext(AuthContext);
   const currentUserEmail = currentUser ? currentUser.email : "unknown";
   const owner = currentUser ? currentUser.uid : "unknown";
@@ -38,10 +39,16 @@ const CreatePage = () => {
     try {
       setError("");
       db.doc(newRecipe.id).set(newRecipe);
+      setSuccess("Successfully added recipe to Saved Recipes.");
     } catch {
       setError("Unable to add new recipe to Saved Recipes.");
     }
-    history.push("/saved");
+    setName("");
+    setFileUrl(null);
+    setSpirit("");
+    setIngredients1("");
+    setIngredients2("");
+    setDirections("");
   }
 
   return (
@@ -159,6 +166,7 @@ const CreatePage = () => {
       </Form>
       <div className="mr-5 ml-5 mb-2">
         {error && <Alert variant="danger">{error}</Alert>}
+        {success && <Alert variant="success">{success}</Alert>}
         <Button
           type="submit"
           variant="info"
