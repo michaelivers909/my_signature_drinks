@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+      match /recipes/{itemId}{
+
+      allow read: if isOwner(resource.data) &&
+        isSignedIn();
+
+      allow create: if isOwner(request.resource.data) &&
+        isSignedIn();
+        
+
+      allow update: if isOwner(request.resource.data) &&
+        isOwner(resource.data) &&
+        isSignedIn();
+        
+
+      allow delete: if isOwner(resource.data) &&
+        isSignedIn();
+
+      // FUNCTIONS
+      function isSignedIn() {
+        return request.auth != null;
+      }
+  
+      function isOwner(recipe) {
+        return request.auth.uid == recipe.owner;
+      }
+    }
+  }
+}

@@ -24,6 +24,8 @@ export default function SavedRecipes() {
   const [ingredients2, setIngredients2] = useState("");
   const [directions, setDirections] = useState("");
   const [selectMain, setSelectMain] = useState("");
+  const [fileUrl, setFileUrl] = useState(null);
+  const [setFileName] = useState("");
   const [sortOrder, setSortOrder] = useState("1");
   const [recipeEdit, setRecipeEdit] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -65,6 +67,16 @@ export default function SavedRecipes() {
       })
     }, [selectMain, recipes, sortOrder])
 
+    const onFileChange = async (e) => {
+      setLoading(true);
+      const file = e.target.files[0];
+      const storageRef = firebase.storage().ref();
+      const fileRef = storageRef.child(file.name);
+      await fileRef.put(file);
+      setFileUrl(await fileRef.getDownloadURL());
+      setLoading(false);
+    };
+
 
   function deleteRecipe(recipe) {
     try {
@@ -76,11 +88,12 @@ export default function SavedRecipes() {
   }
 
   function setEdit(recipe) {
+    setName(recipe.name);
+    // setFileUrl(recipe.fileUrl)
     setSpirit(recipe.spirit);
     setIngredients1(recipe.ingredients1);
     setIngredients2(recipe.ingredients2);
     setDirections(recipe.directions);
-    setName(recipe.name);
   }
 
   function editRecipe(editedRecipe) {
@@ -93,6 +106,7 @@ export default function SavedRecipes() {
     }
     setRecipeEdit(null);
     setName("");
+    setFileUrl(null);
     setIngredients1("");
     setIngredients2("");
     setDirections("");
@@ -161,6 +175,21 @@ export default function SavedRecipes() {
                   />
                 )}
                 <h4 className="font-weight-bold">{recipe.name}</h4>
+                {recipe.id === recipeEdit && (
+                  <>
+                  <Form.Label className="font-weight-bold" column="lg">
+                  Choose an Image for Your Recipe
+                  </Form.Label>
+                  <Form.File
+                  style={{ maxWidth: 600 }}
+                  className="white pills"
+                  type="file"
+                  onChange={
+                    ((e) => setFileName(e.target.files[0].name), onFileChange)
+                  }
+                  />
+                  </>
+                )}
                 <img
                   className="drinkImage mb-2"
                   src={recipe.fileUrl}
@@ -259,7 +288,8 @@ export default function SavedRecipes() {
                               ingredients1,
                               ingredients2,
                               directions,
-                              fileUrl: recipe.fileUrl,
+                              fileUrl,
+                              owner: recipe.owner,
                               id: recipe.id,
                             });
                           }}

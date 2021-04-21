@@ -1,0 +1,12 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/my-signature-cocktails.appspot.com/o {
+    match /{allPaths=**} {
+      allow read: if request.auth.uid != null;
+      allow write: if request.auth.uid != null;
+    }
+    match /userWriteable/{folder}/{uid}/{filename}{
+    	allow write: if request.auth.uid != null && resource.metadata.size < 5 * 1024;
+    }
+  }
+}
