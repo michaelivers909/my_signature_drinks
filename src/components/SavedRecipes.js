@@ -201,7 +201,7 @@ export default function SavedRecipes() {
                   </>
                 )}
                 <img
-                  className="drinkImage mb-2"
+                  className="drinkImage mb-2 mt-4"
                   src={recipe.fileUrl}
                   alt="Cocktail"
                 />
