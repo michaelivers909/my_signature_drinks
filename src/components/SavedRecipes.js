@@ -89,7 +89,6 @@ export default function SavedRecipes() {
 
   function setEdit(recipe) {
     setName(recipe.name);
-    // setFileUrl(recipe.fileUrl)
     setSpirit(recipe.spirit);
     setIngredients1(recipe.ingredients1);
     setIngredients2(recipe.ingredients2);
@@ -116,8 +115,8 @@ export default function SavedRecipes() {
     <>
       <Container
         fluid
-        className="mb-4"
-        id="bgParchGrey"
+        className="white bg-black mb-4"
+        // id="bgParchGrey"
         style={{ minHeight: 800 }}
       >
         <h1 className="text-center fontDafoe">My Saved Recipes</h1>
@@ -199,7 +198,7 @@ export default function SavedRecipes() {
                   {recipe.id === recipeEdit && (
                     <Form.Control
                     size="sm"
-                    className="text-center mb-2 mx-auto"
+                    className="text-center mb-2 mx-auto cursor"
                     style={{ fontSize: 12, maxWidth: 150 }}
                     as="select"
                     value={spirit}
@@ -323,7 +322,7 @@ export default function SavedRecipes() {
                   </div>
                 </main>
                 <Button
-                  className="mb-5"
+                  className="lemon mb-5"
                   variant="link"
                   onClick={(e) => {
                     e.preventDefault();

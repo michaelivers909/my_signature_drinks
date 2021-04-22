@@ -43,17 +43,17 @@ function App() {
           <>
             <Nav className="fontM font-weight-bold pills" justify variant="pills info">
               <Nav.Item>
-                <Nav.Link className="white" href="/Create">
+                <Nav.Link className="white cursor" href="/Create">
                   Create Cocktail
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link className="white" href="/Saved">
+                <Nav.Link className="white cursor" href="/Saved">
                   Saved Recipes
                 </Nav.Link>
               </Nav.Item>
               <NavDropdown
-                title={<span className="white">Session</span>}
+                title={<span className="white cursor">Session</span>}
                 id="nav-dropdown"
               >
                 <NavDropdown.Item onSelect={handleLogOut}>

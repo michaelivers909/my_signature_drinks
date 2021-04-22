@@ -52,12 +52,12 @@ export default function UpdateProfile() {
   }
 
   return (
-        <Container className="text-center fontM" style={{ minHeight: "50vh", maxWidth: "600" }}>
-        <section border="secondary" id="bgParchGrey">
+        <Container className="bg-black text-center fontM" style={{ minHeight: "100vh", maxWidth: "600" }}>
+        <section border="secondary" id="bgSignature" style={{ minHeight: "100vh", maxWidth: "600" }}>
         <Row>
         <Col md={{ span: 6, offset: 3 }}>
             
-            <h2 className="fontDafoe">Update Profile</h2>
+            <h2 className="white fontDafoe">Update Profile</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && <Alert variant="success">{success}</Alert>}
             <Form>
@@ -104,8 +104,8 @@ export default function UpdateProfile() {
                 Update Password
               </Button>
             </Form>
-            <div className="w-100 text-center mt-4">
-              <Link to="/create">Cancel</Link>
+            <div className="bg-black w-100 text-center mt-4">
+              <Link className="lemon" to="/create">Cancel</Link>
             </div>
             </Col>
             </Row>

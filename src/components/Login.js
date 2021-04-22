@@ -28,10 +28,10 @@ export default function Login() {
 
   return (
     <Container
-            className="justify-content-center"
+            className="bg-black justify-content-center"
             style={{ minHeight: "100vh", maxWidth: 600}}
         >
-      <Card border="secondary" className="FontM" id="bgParchGrey">
+      <Card style={{ minHeight: "100vh", maxWidth: "600" }} border="secondary" className=" white FontM" id="bgSignature">
         <Card.Body className="text-center mb-4">
           <h2 className="fontDafoe">Log In To Create Cocktail Recipes!</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -54,12 +54,12 @@ export default function Login() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-2 ">
-            <Link to="/forgot-password">Forgot Password?</Link>
+            <Link className="lemon" to="/forgot-password">Forgot Password?</Link>
           </div>
 
-          <div className="w-100 text-center mt-4">
+          <div className="bg-black w-100 text-center mt-4">
             Don't have an account?{" "}
-            <Link to="signup">
+            <Link className="lemon" to="signup">
               Sign Up
             </Link>
           </div>

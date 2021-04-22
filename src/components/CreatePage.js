@@ -52,7 +52,7 @@ const CreatePage = () => {
   }
 
   return (
-    <Container fluid border="primary" id="bgParchGrey">
+    <Container className="bg-black white"fluid border="primary">
       <Form className="fontM">
         <h4 className="text-center">{`Welcome ${currentUserEmail}`}</h4>
         <h1 className="text-center fontDafoe m-2">Create a Cocktail Recipe</h1>
@@ -82,7 +82,7 @@ const CreatePage = () => {
               {loading ? <h2 className="fontDafoe">Loading...</h2> : null}
               <Form.File
                 style={{ maxWidth: 600 }}
-                className="white pills"
+                className="white cursor pills"
                 type="file"
                 onChange={
                   ((e) => setFileName(e.target.files[0].name), onFileChange)

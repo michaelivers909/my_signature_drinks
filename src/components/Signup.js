@@ -33,30 +33,30 @@ export default function Signup() {
     return (
         
         <Container
-            className="justify-content-center"
+            className="bg-black justify-content-center"
             style={{ minHeight: "100vh", maxWidth: 600}}
         >
-        <Card border="secondary" className="fontM" id="bgParchGrey">
-            <Card.Body className="text-center mb-4">
-                <h2 className="fontDafoe">Sign Up To Make Cocktail Recipes!</h2>
+        <Card border="secondary" className="fontM" id="bgSignature">
+            <Card.Body style={{ minHeight: "100vh", maxWidth: 600}} className="text-center mb-4">
+                <h2 className="white fontDafoe">Sign Up To Make Cocktail Recipes!</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id="email">
-                        <Form.Label>Email</Form.Label>
+                        <Form.Label className="white">Email</Form.Label>
                         <Form.Control type="email" ref={emailRef} required />
                     </Form.Group>
                     <Form.Group id="password">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label className="bg-black white">Password</Form.Label>
                         <Form.Control type="password" ref={passwordRef} required />
                     </Form.Group>
                     <Form.Group id="passwordConfirm">
-                        <Form.Label>Password Confirmation</Form.Label>
+                        <Form.Label className="white">Password Confirmation</Form.Label>
                         <Form.Control type="password" ref={passwordConfirmRef} required />
                     </Form.Group>
                     <Button variant="info" disabled={loading} className="w-50" type="submit">Sign Up</Button>
                 </Form>
-                <div className="w-100 text-center mt-4">
-                    Already signed up? <Link to="/login">Log In</Link>
+                <div className="bg-black white w-100 text-center mt-4">
+                    Already signed up? <Link className="lemon" to="/login">Log In</Link>
                 </div>
             </Card.Body>
         </Card>
