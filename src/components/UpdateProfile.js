@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Alert, Container, Col, Row } from "react-bootstrap";
+import { Form, Button, Alert, Container, Col, Row, Card } from "react-bootstrap";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import "../Style.css";
@@ -52,17 +52,17 @@ export default function UpdateProfile() {
   }
 
   return (
-        <Container className="bg-black text-center fontM" style={{ minHeight: "100vh", maxWidth: "600" }}>
-        <section border="secondary" id="bgSignature" style={{ minHeight: "100vh", maxWidth: "600" }}>
+        <Container fluid className="bg-black text-center fontM" style={{ minHeight: "100vh", maxWidth: "600" }}>
+        <Form style={{ minHeight: "100vh", maxWidth: "600" }}>
         <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col style={{ minHeight: "100vh"}} id="bgSignature" md={{ span: 6, offset: 3 }}>
             
             <h2 className="white fontDafoe">Update Profile</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && <Alert variant="success">{success}</Alert>}
-            <Form>
+            
               <Form.Group id="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label className="white">Email</Form.Label>
                 <Form.Control
                   type="email"
                   defaultValue={currentUser.email}
@@ -79,7 +79,7 @@ export default function UpdateProfile() {
                 Update Email
               </Button>
               <Form.Group id="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label className="white">Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Leave blank to keep current password."
@@ -87,7 +87,7 @@ export default function UpdateProfile() {
                 />
               </Form.Group>
               <Form.Group id="passwordConfirm">
-                <Form.Label>Password Confirmation</Form.Label>
+                <Form.Label className="white">Password Confirmation</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Leave blank to keep current password."
@@ -103,13 +103,13 @@ export default function UpdateProfile() {
               >
                 Update Password
               </Button>
-            </Form>
+            
             <div className="bg-black w-100 text-center mt-4">
               <Link className="lemon" to="/create">Cancel</Link>
             </div>
             </Col>
             </Row>
-        </section>
+        </Form>
         </Container>
     
   );

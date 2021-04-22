@@ -1,12 +1,52 @@
-rules_version = '2';
-service firebase.storage {
-  match /b/my-signature-cocktails.appspot.com/o {
-    match /{allPaths=**} {
-      allow read: if request.auth.uid != null;
-      allow write: if request.auth.uid != null;
-    }
-    match /userWriteable/{folder}/{uid}/{filename}{
-    	allow write: if request.auth.uid != null && resource.metadata.size < 5 * 1024;
+rrules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+      match /recipes/{itemId}{
+
+     allow read: if isOwner(resource.data) &&
+        isSignedIn();
+
+      allow create: if isValidRecipe(request.resource.data) &&
+        isOwner(request.resource.data) &&
+        isSignedIn() &&
+        checkKeys();
+
+      allow update: if isValidRecipe(request.resource.data) &&
+        isOwner(request.resource.data) &&
+        isOwner(resource.data) &&
+        isSignedIn() &&
+        checkKeys();
+
+      allow delete: if isOwner(resource.data) &&
+        isSignedIn();
+
+      // FUNCTIONS
+      function isSignedIn() {
+        return request.auth != null;
+      }
+  
+      function isOwner(recipe) {
+        return request.auth.uid == recipe.owner;
+      }
+  
+      function isValidRecipe(recipe) {
+        return (
+          // recipe.name
+          recipe.name is string &&
+          recipe.name != '' &&
+          // recipe.owner
+          recipe.owner is string &&
+          recipe.owner != '' &&
+          // recipe.id
+          recipe.id is string &&
+          recipe.id != '' 
+        );
+      }
+
+      function checkKeys() {
+        let requiredFields = ['name','owner','id'];
+        return request.resource.data.keys().hasAll(requiredFields)
+      }
     }
   }
 }

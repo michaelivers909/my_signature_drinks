@@ -31,7 +31,7 @@ export default function Login() {
             className="bg-black justify-content-center"
             style={{ minHeight: "100vh", maxWidth: 600}}
         >
-      <Card style={{ minHeight: "100vh", maxWidth: "600" }} border="secondary" className=" white FontM" id="bgSignature">
+      <Card style={{ minHeight: "100vh", maxWidth: "600" }} className=" white FontM" id="bgSignature">
         <Card.Body className="text-center mb-4">
           <h2 className="fontDafoe">Log In To Create Cocktail Recipes!</h2>
           {error && <Alert variant="danger">{error}</Alert>}

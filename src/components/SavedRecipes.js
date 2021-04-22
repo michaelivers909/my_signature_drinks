@@ -9,7 +9,8 @@ import {
   Alert,
   Container,
   Modal,
-  Form
+  Form, 
+  Spinner
 } from "react-bootstrap";
 import firebase from "../Firebase";
 import "../Style.css";
@@ -162,7 +163,16 @@ export default function SavedRecipes() {
         </Row>
         <Row>
           <Col className="fontDafoe" md={{ span: 6, offset: 3 }}>
-            {loading ? <h1>Loading...</h1> : null}
+            {loading ? <>
+                <Spinner
+                  variant="info"
+                  as="span"
+                  animation="border"
+                  size="lg"
+                  role="status"
+                  aria-hidden="true"
+                    />
+                  <h1 className="white">Loading...</h1></> : null}
             {filteredRecipes.length === 0 && loading === false && (<h2>You don't have any saved signature cocktails yet!</h2>)}
             {filteredRecipes.map((recipe) => (
               <div className="fontM" key={recipe.id}>
@@ -327,7 +337,7 @@ export default function SavedRecipes() {
                   variant="link"
                   onClick={(e) => {
                     e.preventDefault();
-                    window.scrollTo(0, 0);
+                    window.scrollTo(0,0);
                   }}
                 >
                   Back to Top

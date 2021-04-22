@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { spiritTypes } from "../shared/SpiritTypes";
 import { AuthContext } from "../contexts/AuthContext";
-import { Button, Form, Alert, Row, Col, Container } from "react-bootstrap";
+import { Button, Form, Alert, Row, Col, Container, Spinner } from "react-bootstrap";
 import firebase from "../Firebase";
 import { v4 as uuidv4 } from "uuid";
 import "../Style.css";
@@ -57,7 +57,7 @@ const CreatePage = () => {
   }
 
   return (
-    <Container className="bg-black white"fluid border="primary">
+    <Container className="bg-black white"fluid>
       <Form className="fontM">
         <h4 className="text-center">{`Welcome ${currentUserEmail}`}</h4>
         <h1 className="text-center fontDafoe m-2">Create a Cocktail Recipe</h1>
@@ -84,10 +84,23 @@ const CreatePage = () => {
               <Form.Label className="font-weight-bold" column="lg">
                 Choose an Image for Your Recipe
               </Form.Label>
-              {loading ? <h2 className="fontDafoe">Loading...</h2> : null}
+              
+              {loading ? 
+              <>
+                <Spinner
+                  variant="info"
+                  as="span"
+                  animation="border"
+                  size="lg"
+                  role="status"
+                  aria-hidden="true"
+                    />
+                  <h2 className="fontDafoe white">Loading...</h2>
+                  </> : null}
               <Form.File
+                id="file-upload-button"
                 style={{ maxWidth: 600 }}
-                className="white cursor pills"
+                className="cursor white pills"
                 type="file"
                 onChange={
                   ((e) => setFileName(e.target.files[0].name), onFileChange)
@@ -104,7 +117,7 @@ const CreatePage = () => {
                 Select the Main Spirit
               </Form.Label>
               <Form.Control
-                className="text-center mx-auto"
+                className="cursor text-center mx-auto"
                 style={{ maxWidth: 160 }}
                 as="select"
                 value={spirit}
