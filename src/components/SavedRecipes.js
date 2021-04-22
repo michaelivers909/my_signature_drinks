@@ -322,7 +322,8 @@ export default function SavedRecipes() {
                   </div>
                 </main>
                 <Button
-                  className="lemon mb-5"
+                  style={{ color: "lemonchiffon" }}
+                  className="mb-5"
                   variant="link"
                   onClick={(e) => {
                     e.preventDefault();

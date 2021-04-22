@@ -26,12 +26,17 @@ const CreatePage = () => {
   const db = firebase.firestore().collection("recipes");
 
   const onFileChange = async (e) => {
+    try {
+    setError("");
     setLoading(true);
     const file = e.target.files[0];
     const storageRef = firebase.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
     setFileUrl(await fileRef.getDownloadURL());
+    } catch {
+      setError("Image must be 5mb or smaller.");
+    }
     setLoading(false);
   };
 
