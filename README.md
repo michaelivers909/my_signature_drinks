@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# This app was created using Reactjs, with a Google Firebase/Firestore database
+
 ## Available Scripts
 
 In the project directory, you can run:
