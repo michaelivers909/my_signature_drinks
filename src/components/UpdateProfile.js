@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Alert, Container, Col, Row, Card } from "react-bootstrap";
+import { Form, Button, Alert, Container, Col, Row } from "react-bootstrap";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import "../Style.css";

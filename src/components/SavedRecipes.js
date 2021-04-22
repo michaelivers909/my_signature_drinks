@@ -190,6 +190,7 @@ export default function SavedRecipes() {
                   Choose an Image for Your Recipe
                   </Form.Label>
                   <Form.File
+                  id="file-upload-button"
                   style={{ maxWidth: 600 }}
                   className="white pills"
                   type="file"

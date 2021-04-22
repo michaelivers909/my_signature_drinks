@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import { spiritTypes } from "../shared/SpiritTypes";
 import { AuthContext } from "../contexts/AuthContext";
 import { Button, Form, Alert, Row, Col, Container, Spinner } from "react-bootstrap";
@@ -21,7 +20,6 @@ const CreatePage = () => {
   const [ingredients1, setIngredients1] = useState("");
   const [ingredients2, setIngredients2] = useState("");
   const [directions, setDirections] = useState("");
-  const history = useHistory();
 
   const db = firebase.firestore().collection("recipes");
 
@@ -44,16 +42,38 @@ const CreatePage = () => {
     try {
       setError("");
       db.doc(newRecipe.id).set(newRecipe);
-      setSuccess("Successfully added recipe to Saved Recipes.");
     } catch {
       setError("Unable to add new recipe to Saved Recipes.");
-    }
-    setName("");
-    setFileUrl(null);
-    setSpirit("");
-    setIngredients1("");
-    setIngredients2("");
-    setDirections("");
+    } if (!isNotValidRecipe(newRecipe)) {
+      db.doc(newRecipe.id)
+      .set(newRecipe)
+      setSuccess("Successfully added recipe to Saved Recipes.");
+      setName("");
+      setFileUrl(null);
+      setSpirit("");
+      setIngredients1("");
+      setIngredients2("");
+      setDirections("");
+    } else setError(isNotValidRecipe(newRecipe));
+  }
+
+  function isNotValidRecipe(recipe) {
+    if (
+      typeof recipe.name !== "string" ||
+      recipe.name === ''
+    ) {
+      return "Recipe must have a name";
+    } else if (
+      typeof recipe.owner !== "string" ||
+      recipe.owner === ""
+    ) {
+      return "Owner Error";
+    } else if (
+      typeof recipe.id !== "string" ||
+      recipe.id === ""
+    ) {
+      return "Id Error";
+    } else return false;
   }
 
   return (
