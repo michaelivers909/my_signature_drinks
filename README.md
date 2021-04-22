@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # This app was created using Reactjs, with a Google Firebase/Firestore database
+I built it because as a former bartender, there were no apps to create and store recipes...only to get recipes that were already made. This is perfect for a bartender or bar manager that creates their own signature cocktails or for a server to enter their establishments signature cocktails.
 
 ## Available Scripts
 
